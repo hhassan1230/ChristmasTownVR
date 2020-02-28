@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>ChristmasTownVR</title>
+    <style>body { margin: 0; }</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  </head>
+  <body>
+    <!-- Attachment point for your app -->
+    <div id="initialize">
+        <div id="placeHolder">
+            <div style="background-image:url('./static_assets/SciBarge.jpg');height:100%;background-position: top center;background-repeat: no-repeat;background-size: fixed;"></div>
+            <div class="container px-md-3 px-sm-0">
+                <div class="col-md-12 mb-4 white-text text-center wow fadeIn">
+                    <h3 class="display-3 font-weight-bold white-text mb-0 pt-md-5 pt-5">The Science Barge 360°<br>A Virtual Reality Tour</h3>
+                    <hr>
+                    <button type="button" class="btn btn-dark" onClick="enterApp();">Enter</button>
+                </div>
+            </div>
+            <div style="background-image:url('./static_assets/Science-Barge-Complimentary-Page-Display-Ad-19-20-01.png');height:33%;background-position: top center;background-repeat: no-repeat;background-size: fixed;"></div>
+        </div>
+        </div>
+    <script src="./client.bundle?platform=vr"></script>
+    <script>
+    // Initialize the React 360 application
+    function enterApp() {
+        React360.init(
+            'index.bundle?platform=vr&dev=true',
+            document.getElementById('initialize'), {
+                assetRoot: 'static_assets/',
+            }
+        );
+
+        const elem = document.getElementById('placeHolder');
+        elem.parentNode.removeChild(elem);
+    }
+    </script>
+  </body>
+</html>
+
