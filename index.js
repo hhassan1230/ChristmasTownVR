@@ -64,11 +64,12 @@ class Button extends React.Component {
   render() {
     return(
       <VrButton
-                style={this.state.hover ? styles.hover : styles.button}
+                style={this.state.hover ? styles.arrowButtonContainerHover : styles.arrowButtonContainer}
                 onEnter={() => this.setState({hover: true})}
                 onExit={() => this.setState({hover: false})}
                 onClick={() => this.clickHandler(this.props.room)}>
-        <Text style={{textAlign: 'center'}}>{ this.props.room.split('_').join(' ') }</Text>
+        {/*<Text style={{textAlign: 'center'}}>{ this.props.room.split('_').join(' ') }</Text>*/}
+        <Image source={asset('GUI/ARROW.png')} style={styles.arrowbutton} />
       </VrButton>
     )
   }
@@ -81,7 +82,7 @@ export default class ButtonInfoPanel extends React.Component {
     let buttons = [];
 
     rooms.map(room => (
-      buttons.push(<Button  key={`${room}` + '-button'} room={ room }/>)
+      buttons.push(<Button key={`${room}` + '-button'} room={ room }/>)
     ))
 
     return buttons;
@@ -94,7 +95,7 @@ export default class ButtonInfoPanel extends React.Component {
           <Text style={styles.header}>Welcome to the {`${this.props.room.split('_').join(' ')}`}</Text>
           <Text style={styles.header}>Area Selection</Text>
           { this.createRoomButtons(this.props.adjacentRooms) }
-          <AudioPanel />
+          {/* <AudioPanel /> */}
         </View>
       </View>
     );
@@ -107,6 +108,16 @@ const ConnectedHouseInfoPanel = connect(HouseInfoPanel);
 const styles = StyleSheet.create({
   audioPanel: {
     flexDirection: 'row'
+  },
+  arrowbutton: {
+    width: 200,
+    height: 200,
+  },
+  arrowButtonContainer: {
+    width: 200,
+  },
+  arrowButtonContainerHover: {
+    width: 250,
   },
   infoPanel: {
     width: 400,
