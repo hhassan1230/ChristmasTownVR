@@ -29,6 +29,10 @@ export function changeRoom(roomSelection) {
   updateComponents();
 }
 
+export function getCurrentRoom() {
+	return State.room;
+}
+
 export function connect(Component) {
   return class Wrapper extends React.Component {
     state = {

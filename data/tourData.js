@@ -1,12 +1,12 @@
 export default house = {
   Entry: {
-    roomName: 'Outside',
+    roomName: 'Entry',
     info: ``,
     img: 'ovenland1.JPG',
-    adjacentRooms: ['MainHall'],
+    adjacentRooms: ['MainHall']
   },
   MainHall: {
-    roomName: 'Main Hall' ,
+    roomName: 'MainHall' ,
     info: ``,
     img: 'ovenland2.JPG',
     adjacentRooms: ['Kitchen', 'Sleeping_Room', 'Mushroom_Room', 'Entry']
@@ -18,19 +18,19 @@ export default house = {
     adjacentRooms: ['MainHall']
   },
   Sleeping_Room: {
-    roomName: 'Sleeping Room',
+    roomName: 'Sleeping_Room',
     info:``,
     img: 'ovenland3.JPG',
     adjacentRooms: ['MainHall']
   },
   Mushroom_Room: {
-    roomName: 'Mushroom Room',
+    roomName: 'Mushroom_Room',
     info: ``,
     img: 'ovenland5.JPG',
     adjacentRooms: ['Breakfast_Nook','MainHall']
   },
   Breakfast_Nook: {
-    roomName: 'Feast Hall',
+    roomName: 'Feast_Hall',
     info: ``,
     img: 'ovenland6.JPG',
     adjacentRooms: ['Mushroom_Room']
