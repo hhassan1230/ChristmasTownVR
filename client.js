@@ -13,22 +13,49 @@ function init(bundle, parent, options = {}) {
   });
 
 
+  const infoPanel = new Surface(
+    800, 
+    950, 
+    Surface.SurfaceShape.Flat
+  );
+
+  infoPanel.setAngle(
+    0.6,
+    0.1
+  )
+
+  r360.renderToSurface(
+    r360.createRoot('ConnectedInfoPanel', {  }),
+    infoPanel
+  );
+
   interactions.forEach((buttonInteraction, i) => {
       const buttonsPanel = new Surface(
-        220, 
-        220, 
+        250, 
+        250, 
         Surface.SurfaceShape.Flat
       );
 
-      buttonsPanel.setAngle(
-        buttonInteraction.location.x,
-        buttonInteraction.location.y,
-      )
+      if (buttonInteraction.location.z) {
+        buttonsPanel.setAngle(
+          buttonInteraction.location.x,
+          buttonInteraction.location.y,
+          buttonInteraction.location.z,
+        )
+      } else {
+        buttonsPanel.setAngle(
+          buttonInteraction.location.x,
+          buttonInteraction.location.y,
+        )
+      }
 
       r360.renderToSurface(
-        r360.createRoot('ConnectedButtonInfoPanel', { buttonInteraction }),
+        r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
         buttonsPanel
       );
+
+      // const s = r360.getDefaultSurface();
+      // s.resize(10, 10);
   })
 
   // const buttonsPanel = new Surface(
@@ -42,21 +69,8 @@ function init(bundle, parent, options = {}) {
   //   0.1
   // )
 
-  // const infoPanel = new Surface(
-  //   400, 
-  //   550, 
-  //   Surface.SurfaceShape.Flat
-  // );
-
-  // infoPanel.setAngle(
-  //   0.6,
-  //   0.1
-  // )
-
-  // r360.renderToSurface(
-  //   r360.createRoot('ConnectedHouseInfoPanel', { /* initial props */ }),
-  //   infoPanel
-  // );
+  // const cameraQuat = r360.getCameraQuaternion();
+  // infoPanel.recenter(cameraQuat, 'all');
 
   // r360.renderToSurface(
   //   r360.createRoot('ConnectedButtonInfoPanel', { /* initial props */ }),

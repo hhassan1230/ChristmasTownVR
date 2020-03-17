@@ -35,4 +35,4 @@ export default house = {
     img: 'ovenland6.JPG',
     adjacentRooms: ['Mushroom_Room']
   }
-}
+};

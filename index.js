@@ -9,9 +9,15 @@ import {
   View,
   VrButton
 } from 'react-360';
-import { connect, changeRoom, getCurrentRoom } from './store';
+import { connect, changeRoom, openModal, closeModal, getCurrentRoom, getCurrentModalState } from './store';
 
 const { AudioModule } = NativeModules;
+
+const icon = {
+  Nav: 'GUI/ARROW.png',
+  Print: 'GUI/BOW.png',
+  Picture: 'GUI/EYEBALL.png',
+};
 
 class AudioPanel extends React.Component {
   playAmbientMusic() {
@@ -39,14 +45,24 @@ class AudioPanel extends React.Component {
   }
 }
 
-class HouseInfoPanel extends React.Component {
+class InfoPanel extends React.Component {
+  state = {
+    active: this.props.infoActive,
+    id: null,
+  }
+
   render() {
+    console.log("-------------------------------------------------- InfoPanel active", this.state.active + " == " + "getCurrentModalState() " + getCurrentModalState());
+
     return(
       <View>
+      {this.state.active === getCurrentModalState() &&
         <View style={styles.infoPanel}>
-          <Text style={styles.header}>Info</Text>
+          {/* <Text style={styles.header}>Info</Text> */}
+          { <Image source={asset(this.props.infoImage)} style={{height: '100%', width: '100%'}} /> }
           <Text style={{fontSize: 20, textAlign: 'center', fontWeight: 'bold'}}>{ this.props.info }</Text>
         </View>
+      }
       </View>
     )
   }
@@ -60,10 +76,28 @@ class Button extends React.Component {
   }
 
   clickHandler(roomSelection) {
-    changeRoom(roomSelection);
+    if (this.props.type === 'Nav') {
+      changeRoom(roomSelection.room);
+    } else if (this.props.type === 'Print' || this.props.type === 'Picture') {
+      console.log('-------------------------------- In clickHandler ' + roomSelection.id);
+
+            // Print & Picture
+      // Show Info Panel 
+      openModal(roomSelection.id);
+
+    } else {
+      // Sounds Maybe???
+
+    }
+    
   }
 
+
+
   render() {
+    const buttonIcon = icon[this.props.type];
+
+
     return(
       <View>
         {this.state.active &&
@@ -71,9 +105,8 @@ class Button extends React.Component {
             style={this.state.hover ? styles.arrowButtonContainerHover : styles.arrowButtonContainer}
             onEnter={() => this.setState({hover: true})}
             onExit={() => this.setState({hover: false})}
-            onClick={() => this.clickHandler(this.props.room)}>
-            {/*<Text style={{textAlign: 'center'}}>{ this.props.room.split('_').join(' ') }</Text>*/}
-            <Image source={asset('GUI/ARROW.png')} style={styles.arrowbutton} />
+            onClick={() => this.clickHandler({ room: this.props.room, id: this.props.id })}>
+              <Image source={asset(buttonIcon)} style={styles.arrowbutton} />
           </VrButton>
         }
       </View>
@@ -81,16 +114,14 @@ class Button extends React.Component {
   }
 }
 
-export default class ButtonInfoPanel extends React.Component {
+export default class ButtonPanel extends React.Component {
 
   render() {
-    console.log("getCurrentRoom", getCurrentRoom());
     return (
       <View>
         {this.props.buttonInteraction.originalRoom === getCurrentRoom() &&
-
           <View style={styles.buttonPanel}>
-            { <Button key={`${this.props.buttonInteraction.roomName}` + '-button'} room={ this.props.buttonInteraction.roomName }/> }
+            { <Button type={this.props.buttonInteraction.type} key={`${this.props.buttonInteraction.roomName}` + '-button'} id={ this.props.buttonInteraction.id } room={ this.props.buttonInteraction.roomName }/> }
             {/* <AudioPanel /> */}
           </View>
         }
@@ -99,8 +130,8 @@ export default class ButtonInfoPanel extends React.Component {
   }
 };
 
-const ConnectedButtonInfoPanel = connect(ButtonInfoPanel);
-const ConnectedHouseInfoPanel = connect(HouseInfoPanel);
+const ConnectedButtonPanel = connect(ButtonPanel);
+const ConnectedInfoPanel = connect(InfoPanel);
 
 const styles = StyleSheet.create({
   audioPanel: {
@@ -117,8 +148,8 @@ const styles = StyleSheet.create({
     width: 250,
   },
   infoPanel: {
-    width: 400,
-    height: 400,
+    width: 800,
+    height: 950,
     opacity: 0.8,
     backgroundColor: 'rgb(255, 200, 50)',
     borderColor: 'rgb(255, 255, 255)',
@@ -126,9 +157,9 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   buttonPanel: {
-    width: 220,
-    height: 220,
-    opacity: 0.8,
+    width: 250,
+    height: 250,
+    opacity: 1,
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center'
@@ -152,5 +183,5 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('ConnectedButtonInfoPanel', () => ConnectedButtonInfoPanel);
-AppRegistry.registerComponent('ConnectedHouseInfoPanel', () => ConnectedHouseInfoPanel);
+AppRegistry.registerComponent('ConnectedButtonPanel', () => ConnectedButtonPanel);
+AppRegistry.registerComponent('ConnectedInfoPanel', () => ConnectedInfoPanel);
