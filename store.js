@@ -16,6 +16,7 @@ const State = {
 const listeners = new Set();
 
 function updateComponents() {
+	
   for (const cb of listeners.values()) {
     cb();
   }
@@ -29,28 +30,45 @@ export function changeRoom(roomSelection) {
 
   Environment.setBackgroundImage(asset(`/PANO_ART/${house[`${roomName}`].img}`));
 
+  State.infoActive = false;
+
   updateComponents();
 }
 
-export function openModal(id) {
-	console.log('We in that changeModal with ' + id);
+export function openModal(id, type) {
+	console.log('We in that changeModal with ' + id + " & This == " + this);
 	// infoImage
+	let matchingInfo;
+	if (type === "Picture") {
+		 matchingInfo = copy.filter(function(contact) { return contact.id == id; });
+	} else {
+			matchingInfo = printables.filter(function(contact) { return contact.id == id; });
+	}
 	// Find ID
-
+	// debugger;
 	// Add Images & Text Based off ID
 
   // const cameraQuat = r360.getCameraQuaternion();
   // infoPanel.recenter(cameraQuat, 'all');
 
   // Display True
+  // this.setState({
+  // 	infoActive: true,
+  // });
+  State.infoImage = matchingInfo[0].img;
+  State.info = matchingInfo[0].info;
   State.infoActive = true;
+  updateComponents();
+  // React360.recenterInfoPanel();
+  // _listener();
 }
 
 export function closeModal() {
 	console.log('Closing that modal');
 	// Display False
 	State.infoActive = false;
-
+	updateComponents();
+	// _listener();
 }
 
 export function getCurrentRoom() {

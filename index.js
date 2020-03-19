@@ -22,7 +22,7 @@ const icon = {
 class AudioPanel extends React.Component {
   playAmbientMusic() {
     AudioModule.playEnvironmental({
-      source: asset('MUSIC/sugarPlumMixed_1_lower.ogg'),
+      source: asset('/MUSIC/sugarPlumMixed_1_lower.ogg'),
       volume: 0.1,
     });
   }
@@ -47,20 +47,20 @@ class AudioPanel extends React.Component {
 
 class InfoPanel extends React.Component {
   state = {
-    active: this.props.infoActive,
+    active: getCurrentModalState(),
     id: null,
   }
 
   render() {
-    console.log("-------------------------------------------------- InfoPanel active", this.state.active + " == " + "getCurrentModalState() " + getCurrentModalState());
+    console.log(" -------------------------------------------------- InfoPanel active ", this.state.active + " == " + "getCurrentModalState() " + getCurrentModalState());
 
     return(
       <View>
-      {this.state.active === getCurrentModalState() &&
+      {getCurrentModalState() &&
         <View style={styles.infoPanel}>
           {/* <Text style={styles.header}>Info</Text> */}
-          { <Image source={asset(this.props.infoImage)} style={{height: '100%', width: '100%'}} /> }
-          <Text style={{fontSize: 20, textAlign: 'center', fontWeight: 'bold'}}>{ this.props.info }</Text>
+          { <Image source={asset(this.props.infoImage)} style={{height: '70%', width: '100%'}} /> }
+          <Text style={{fontSize: 20, textAlign: 'center', fontWeight: 'bold', height: '20%', width: '100%'}}>{ this.props.info }</Text>
         </View>
       }
       </View>
@@ -79,12 +79,13 @@ class Button extends React.Component {
     if (this.props.type === 'Nav') {
       changeRoom(roomSelection.room);
     } else if (this.props.type === 'Print' || this.props.type === 'Picture') {
-      console.log('-------------------------------- In clickHandler ' + roomSelection.id);
+      // console.log('-------------------------------- In clickHandler ' + JSON.stingify(this));
 
             // Print & Picture
       // Show Info Panel 
-      openModal(roomSelection.id);
-
+      console.log(this.props)
+      openModal(roomSelection.id, this.props.type);
+      // this.props.recenter();
     } else {
       // Sounds Maybe???
 
@@ -117,11 +118,13 @@ class Button extends React.Component {
 export default class ButtonPanel extends React.Component {
 
   render() {
+    console.log(" 000000000000000 Button ", this.props);
+    
     return (
       <View>
         {this.props.buttonInteraction.originalRoom === getCurrentRoom() &&
           <View style={styles.buttonPanel}>
-            { <Button type={this.props.buttonInteraction.type} key={`${this.props.buttonInteraction.roomName}` + '-button'} id={ this.props.buttonInteraction.id } room={ this.props.buttonInteraction.roomName }/> }
+            { <Button type={this.props.buttonInteraction.type} recenter={this.props.recenterInfoPanel} key={`${this.props.buttonInteraction.roomName}` + '-button'} id={ this.props.buttonInteraction.id } room={ this.props.buttonInteraction.roomName }/> }
             {/* <AudioPanel /> */}
           </View>
         }

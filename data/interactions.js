@@ -107,7 +107,7 @@ export default interactions = [
     originalRoom: `Entry`,
     Picture: null,
     img: 'ovenland1.JPG',
-    id: 1
+    id: 2
   },
   {
     roomName: 'Entry',
@@ -127,7 +127,7 @@ export default interactions = [
     originalRoom: `MainHall`,
     Picture: null,
     img: 'ovenland2.JPG',
-    id: 2
+    id: 3
   },
   {
     roomName: 'Kitchen',
@@ -137,7 +137,7 @@ export default interactions = [
     originalRoom: `Kitchen`,
     Picture: null,
     img: 'ovenland4.JPG',
-    id: 2
+    id: 5
   },
   {
     roomName: 'Sleeping_Room',
@@ -147,7 +147,7 @@ export default interactions = [
     originalRoom: `Sleeping_Room`,
     Picture: null,
     img: 'ovenland6.JPG',
-    id: 6
+    id: 4
   },
   {
     roomName: 'Mushroom_Room',
@@ -157,7 +157,7 @@ export default interactions = [
     originalRoom: `Mushroom_Room`,
     Picture: null,
     img: 'ovenland5.JPG',
-    id: 5
+    id: 6
   },
   {
     roomName: 'Breakfast_Nook',
@@ -167,7 +167,7 @@ export default interactions = [
     originalRoom: `Breakfast_Nook`,
     Picture: null,
     img: 'ovenland6.JPG',
-    id: 6
+    id: 7
   },
   {
     roomName: 'Breakfast_Nook',
@@ -177,7 +177,7 @@ export default interactions = [
     originalRoom: `Breakfast_Nook`,
     Picture: null,
     img: 'ovenland6.JPG',
-    id: 6
+    id: 8
   },
   {
     roomName: 'Breakfast_Nook',
@@ -187,7 +187,7 @@ export default interactions = [
     originalRoom: `Breakfast_Nook`,
     Picture: null,
     img: 'ovenland6.JPG',
-    id: 6
+    id: 9
   },
   {
     roomName: 'Entry',
@@ -197,7 +197,7 @@ export default interactions = [
     originalRoom: `Entry`,
     Picture: null,
     img: 'ovenland2.JPG',
-    id: 2
+    id: 101
   },
   {
     roomName: 'MainHall',
@@ -207,7 +207,7 @@ export default interactions = [
     originalRoom: `MainHall`,
     Picture: null,
     img: 'ovenland2.JPG',
-    id: 2
+    id: 102
   },
   {
     roomName: 'Kitchen',
@@ -217,7 +217,7 @@ export default interactions = [
     originalRoom: `Kitchen`,
     Picture: null,
     img: 'ovenland4.JPG',
-    id: 4
+    id: 103
   },
   {
     roomName: 'Sleeping_Room',
@@ -227,7 +227,7 @@ export default interactions = [
     originalRoom: `Sleeping_Room`,
     Picture: null,
     img: 'ovenland3.JPG',
-    id: 3
+    id: 104
   },
   {
     roomName: 'Mushroom_Room',
@@ -237,7 +237,7 @@ export default interactions = [
     originalRoom: `Mushroom_Room`,
     Picture: null,
     img: 'ovenland5.JPG',
-    id: 3
+    id: 105
   },
   {
     roomName: 'Breakfast_Nook',
@@ -247,6 +247,6 @@ export default interactions = [
     originalRoom: `Breakfast_Nook`,
     Picture: null,
     img: 'ovenland6.JPG',
-    id: 6
+    id: 106
   }
 ];

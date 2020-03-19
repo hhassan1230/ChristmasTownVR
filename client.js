@@ -12,7 +12,6 @@ function init(bundle, parent, options = {}) {
     ...options,
   });
 
-
   const infoPanel = new Surface(
     800, 
     950, 
@@ -28,6 +27,13 @@ function init(bundle, parent, options = {}) {
     r360.createRoot('ConnectedInfoPanel', {  }),
     infoPanel
   );
+
+  function recenterInfoPanel() {
+      const cameraQuat = r360.getCameraQuaternion();
+      infoPanel.recenter(cameraQuat, 'all');
+  }
+
+  const that = this;
 
   interactions.forEach((buttonInteraction, i) => {
       const buttonsPanel = new Surface(
@@ -49,6 +55,8 @@ function init(bundle, parent, options = {}) {
         )
       }
 
+      console.log("========================= THat ", recenterInfoPanel);
+      buttonInteraction.recenter = recenterInfoPanel;
       r360.renderToSurface(
         r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
         buttonsPanel
@@ -69,16 +77,15 @@ function init(bundle, parent, options = {}) {
   //   0.1
   // )
 
-  // const cameraQuat = r360.getCameraQuaternion();
-  // infoPanel.recenter(cameraQuat, 'all');
-
   // r360.renderToSurface(
   //   r360.createRoot('ConnectedButtonInfoPanel', { /* initial props */ }),
   //   buttonsPanel
   // );
 
   // Load the initial environment
-  r360.compositor.setBackground(r360.getAssetURL('/PANO_ART/ovenland1.JPG'));
+  // r360.compositor.setBackground(r360.getAssetURL('/PANO_ART/ovenland1.JPG'));
+    r360.compositor.setBackground(r360.getAssetURL('/PANO_ART/ovenland1.JPG'));
+
 }
 
 window.React360 = {init};
