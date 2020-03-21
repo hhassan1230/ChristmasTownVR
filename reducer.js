@@ -27,6 +27,14 @@ export default function reducer(state = {
   }
 }
 
+export function getCurrentRoom() {
+	return reducer.state.room;
+}
+
+export function getCurrentModalState() {
+	return reducer.state.infoActive;
+}
+
 export function changeRoom(roomSelection) {
   let roomName = roomSelection;
 
