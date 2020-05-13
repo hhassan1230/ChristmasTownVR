@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow:400,500,700");
 * {
+  /*
   box-sizing: border-box;
-  margin: 20px; }
-  *::before, *::after {
-    box-sizing: border-box; }
+  &::before, &::after {
+    box-sizing: border-box;
+  }
+   margin: 20px; 
+  */ }
 
 body {
   font-family: 'Barlow', sans-serif;
@@ -183,7 +186,7 @@ button {
   .flex-nav ul.active {
     display: flex; }
 
-@media (min-width: 1px) {
+@media (min-width: 992px) {
   nav ul {
     justify-content: flex-end; }
 

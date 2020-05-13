@@ -4,14 +4,16 @@ $white: #fff;
 $black: #232323;
 $gray: #8d8d8d;
 $red: #e83f43;
-$md: 1px;
+$md: 992px;
 
 * {
+  /*
   box-sizing: border-box;
   &::before, &::after {
     box-sizing: border-box;
   }
-  margin: 20px;
+   margin: 20px; 
+  */
 }
 
 body {
