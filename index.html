@@ -165,8 +165,6 @@
 
     // Initialize the React 360 application
     function enterApp() {
-
-
         React360.init(
             'index.bundle?platform=vr&dev=true',
             document.getElementById('initialize'), {
@@ -176,11 +174,6 @@
 
         const elem = document.getElementById('placeHolder');
         elem.parentNode.removeChild(elem);
-
-        // document.getElementById("initialize").childNodes[2].style.margin = "0px";
-        // document.getElementById("initialize").childNodes[3].style.margin = "0px";
-
-        // document.getElementsByTagName('html')[0].style.margin = '0px';
 
         document.querySelectorAll("*").forEach(el => el.style.margin = "0px");
     }

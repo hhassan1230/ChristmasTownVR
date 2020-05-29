@@ -9,7 +9,10 @@ import {
   View,
   VrButton
 } from 'react-360';
-import { connect, changeRoom, openModal, closeModal, getCurrentRoom, getCurrentModalState } from './store';
+// import { connect, changeRoom, openModal, closeModal, getCurrentRoom, getCurrentModalState } from './store';
+import { connect } from 'react-redux';
+
+import { changeRoom, openModal, closeModal, getCurrentRoom, getCurrentModalState } from './reducer';
 
 const { AudioModule } = NativeModules;
 
@@ -18,6 +21,19 @@ const icon = {
   Print: 'GUI/BOW.png',
   Picture: 'GUI/EYEBALL.png',
 };
+
+class Tour extends React.Component {
+
+
+  render() {
+    return(
+      <View>
+
+      </View>
+    )
+  }
+}
+
 
 class AudioPanel extends React.Component {
   playAmbientMusic() {
@@ -132,6 +148,21 @@ export default class ButtonPanel extends React.Component {
     );
   }
 };
+
+
+
+// const mapStateToProps = state => {
+//   let storedRepositories = state.repos.map(repo => ({ key: repo.id, ...repo }));
+//   return {
+//     repos: storedRepositories
+//   };
+// };
+
+// const mapDispatchToProps = {
+//   listRepos
+// };
+// export default connect(mapStateToProps, mapDispatchToProps)(RepoList);
+
 
 const ConnectedButtonPanel = connect(ButtonPanel);
 const ConnectedInfoPanel = connect(InfoPanel);
