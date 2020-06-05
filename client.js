@@ -56,11 +56,6 @@ function init(bundle, parent, options = {}) {
         )
       }
 
-    function recenterInfoPanel() {
-      const cameraQuat = r360.getCameraQuaternion();
-      infoPanel.recenter(cameraQuat, 'all');
-  }
-
       console.log("========================= THat ", recenterInfoPanel);
       buttonInteraction.recenter = recenterInfoPanel;
       r360.renderToSurface(
