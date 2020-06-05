@@ -2,7 +2,7 @@ export default interactions = [
 	{
 		roomName: 'MainHall',
 		type: `Nav`,
-		location: {x: 0.09, y: -0.32, z: null},
+		location: {x: 0.09, y: -0.32, z: 0},
 		distance: 1,
 		originalRoom: `Entry`,
     img: 'ovenland2.JPG',

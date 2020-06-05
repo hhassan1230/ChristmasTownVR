@@ -9,10 +9,10 @@ import {
   View,
   VrButton
 } from 'react-360';
-// import { connect, changeRoom, openModal, closeModal, getCurrentRoom, getCurrentModalState } from './store';
-import { connect } from 'react-redux';
+import { connect, changeRoom, openModal, closeModal, getCurrentRoom, getCurrentModalState } from './store';
+// import { connect } from 'react-redux';
 
-import { changeRoom, openModal, closeModal, getCurrentRoom, getCurrentModalState } from './reducer';
+// import { changeRoom, openModal, closeModal, getCurrentRoom, getCurrentModalState } from './reducer';
 
 const { AudioModule } = NativeModules;
 
@@ -99,9 +99,10 @@ class Button extends React.Component {
 
             // Print & Picture
       // Show Info Panel 
-      console.log(this.props)
+      // console.log
+      console.log("-----------------------------------> Yo", this.props)
       openModal(roomSelection.id, this.props.type);
-      // this.props.recenter();
+      this.props.recenter();
     } else {
       // Sounds Maybe???
 
@@ -134,7 +135,7 @@ class Button extends React.Component {
 export default class ButtonPanel extends React.Component {
 
   render() {
-    console.log(" 000000000000000 Button ", this.props);
+    // console.log(" 000000000000000 Button ", this.props);
     
     return (
       <View>

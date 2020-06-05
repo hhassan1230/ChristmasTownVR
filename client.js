@@ -41,6 +41,7 @@ function init(bundle, parent, options = {}) {
         250, 
         Surface.SurfaceShape.Flat
       );
+      console.log(buttonInteraction.id);
 
       if (buttonInteraction.location.z) {
         buttonsPanel.setAngle(
@@ -54,6 +55,11 @@ function init(bundle, parent, options = {}) {
           buttonInteraction.location.y,
         )
       }
+
+    function recenterInfoPanel() {
+      const cameraQuat = r360.getCameraQuaternion();
+      infoPanel.recenter(cameraQuat, 'all');
+  }
 
       console.log("========================= THat ", recenterInfoPanel);
       buttonInteraction.recenter = recenterInfoPanel;
