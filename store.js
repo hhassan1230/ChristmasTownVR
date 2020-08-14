@@ -3,7 +3,7 @@ import React from 'react';
 import { asset, Environment } from 'react-360';
 import house from './data/tourData';
 import copy from './data/copy';
-
+import printables from './data/printables';
 
 const State = {
   room: house.Entry.roomName,
@@ -39,6 +39,7 @@ export function openModal(id, type) {
 	console.log('We in that changeModal with ' + id + " & This == " + this);
 	// infoImage
 	let matchingInfo;
+  // debugger;
 	if (type === "Picture") {
 		 matchingInfo = copy.filter(function(contact) { return contact.id == id; });
 	} else {
@@ -56,7 +57,7 @@ export function openModal(id, type) {
   // 	infoActive: true,
   // });
   State.infoImage = matchingInfo[0].img;
-  State.info = matchingInfo[0].info;
+  State.info = type === "Picture" ? matchingInfo[0].info : "This image is available for Download & Coloring on the home page";
   State.infoActive = true;
   updateComponents();
   // React360.recenterInfoPanel();

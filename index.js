@@ -22,18 +22,6 @@ const icon = {
   Picture: 'GUI/EYEBALL.png',
 };
 
-class Tour extends React.Component {
-
-
-  render() {
-    return(
-      <View>
-
-      </View>
-    )
-  }
-}
-
 
 class AudioPanel extends React.Component {
   playAmbientMusic() {
@@ -73,8 +61,9 @@ class InfoPanel extends React.Component {
     return(
       <View>
       {getCurrentModalState() &&
+
         <View style={styles.infoPanel}>
-          {/* <Text style={styles.header}>Info</Text> */}
+          <Image source={asset('GUI/NaviIcon_24.png')} style={styles.closeButton} />
           { <Image source={asset(this.props.infoImage)} style={{height: '70%', width: '100%'}} /> }
           <Text style={{fontSize: 20, textAlign: 'center', fontWeight: 'bold', height: '20%', width: '100%'}}>{ this.props.info }</Text>
         </View>
@@ -86,28 +75,38 @@ class InfoPanel extends React.Component {
 
 class Button extends React.Component {
   state = {
-    hover: false,
-    active: true,
-    id: null,
+      hover: false,
+      active: true,
+      id: null,
+      roomNow: null,
   }
 
   clickHandler(roomSelection) {
-    if (this.props.type === 'Nav') {
-      changeRoom(roomSelection.room);
-    } else if (this.props.type === 'Print' || this.props.type === 'Picture') {
-      // console.log('-------------------------------- In clickHandler ' + JSON.stingify(this));
+      if (this.props.type === 'Nav') {
+          changeRoom(roomSelection.room);
+      } else if (this.props.type === 'Print' || this.props.type === 'Picture') {
+          // console.log('-------------------------------- In clickHandler ' + JSON.stingify(this));
 
-            // Print & Picture
-      // Show Info Panel 
-      // console.log
-      console.log("-----------------------------------> Yo", this.props)
-      openModal(roomSelection.id, this.props.type);
-      this.props.recenter();
-    } else {
-      // Sounds Maybe???
+          // Print & Picture
+          // Show Info Panel 
+          if (!this.state.roomNow || this.state.roomNow !== roomSelection.id) {
+              this.setState({
+                  roomNow: roomSelection.id
+              });
+              console.log("--------------------------------> ", this.props.type, " <--------------------------------");
+              openModal(roomSelection.id, this.props.type);
+          }
+          if (this.state.roomNow === roomSelection.id) {
+              closeModal();
+              this.setState({ roomNow: null });
+          }
 
-    }
-    
+          // this.props.recenter();
+      } else {
+          // Sounds Maybe???
+
+      }
+
   }
 
 
@@ -182,10 +181,17 @@ const styles = StyleSheet.create({
   arrowButtonContainerHover: {
     width: 250,
   },
+  closeButton: {
+    marginLeft: 'auto',
+    height: '10%',
+    width: '10%',
+    right: 0,
+  },
   infoPanel: {
+    display: 'flex',
     width: 800,
     height: 950,
-    opacity: 0.8,
+    opacity: 1,
     backgroundColor: 'rgb(255, 200, 50)',
     borderColor: 'rgb(255, 255, 255)',
     borderWidth: 5,
