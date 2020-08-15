@@ -85,7 +85,7 @@ function init(bundle, parent, options = {}) {
 
   // Load the initial environment
   // r360.compositor.setBackground(r360.getAssetURL('/PANO_ART/ovenland1.JPG'));
-    r360.compositor.setBackground(r360.getAssetURL('/PANO_ART/ovenland1.JPG'));
+    r360.compositor.setBackground(r360.getAssetURL('/TWH/SC1-StartHobGoblin.jpg'));
 
 }
 
