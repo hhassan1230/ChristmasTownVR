@@ -2,7 +2,9 @@
 // If you want to modify your application's content, start in "index.js"
 
 import {ReactInstance, Surface} from 'react-360-web';
-import interactions from './data/interactions';
+// import interactions from './data/interactions';
+import data from './data/config.json';
+
 
 function init(bundle, parent, options = {}) {
   const r360 = new ReactInstance(bundle, parent, {
@@ -11,6 +13,14 @@ function init(bundle, parent, options = {}) {
     enableHotReload: true,
     ...options,
   });
+
+  const interactions = () => {
+    const interactionsArr = [];
+    data.forEach((room) => {
+      interactionsArr.concat(room.interactions);
+    }
+    return interactionsArr;
+  }
 
   const infoPanel = new Surface(
     800, 
@@ -35,7 +45,7 @@ function init(bundle, parent, options = {}) {
 
   const that = this;
 
-  interactions.forEach((buttonInteraction, i) => {
+  interactions().forEach((buttonInteraction, i) => {
       const buttonsPanel = new Surface(
         250, 
         250, 

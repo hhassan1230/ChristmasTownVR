@@ -1,0 +1,148 @@
+ "rooms": [
+ 	{
+ 	  "roomName": "Entry",
+ 	  "info": "``",
+	  "interactions": [
+  		{
+  			"destination": "MainHall",
+  			"type": "Nav",
+  			"location": {"x": 0.09, "y": -0.32, "z": 0},
+  			"distance": 1,
+  	    "img": "ovenland2.JPG",
+  	    "id": 1
+  	  },
+	    {
+		    "destination": "Entry",
+		    "type": "Nav",
+		    "location": {"x": -1.53, "y": 0.045, "z": 0.12}, //Need to do the negative Gangsta Lean
+		    "distance": 1,
+		    "originalRoom": "MainHall",
+		    "img": "ovenland1.JPG",
+		    "id": 2
+		  },
+	  ],
+ 	  "backgroundAudio": "``",
+ 	  "img": "SC1-StartHobGoblin.jpg",
+ 	  "adjacentRooms": ["MainHall"]
+ 	},
+ 	{
+ 	  "roomName": "MainHall" ,
+ 	  "info": "``",
+	  "interactions": [
+  		{
+		    "destination": "Mushroom_Room",
+		    "type": "Nav",
+		    "location": {"x": 1.55, "y": 0.039, "z": null},
+		    "distance": 1,
+		    "originalRoom": "MainHall",
+		    "img": "ovenland5.JPG",
+		    "id": 2
+  	  }
+	  ],
+ 	  "backgroundAudio": "``",
+ 	  "img": "SC2-TheBrides.jpg",
+ 	  "adjacentRooms": ["Kitchen", "Sleeping_Room", "Mushroom_Room", "Entry"]
+ 	},
+ 	{
+ 	  "roomName": "Kitchen",
+ 	  "info": "``",
+	  "interactions": [
+  		{
+			  "destination": "Sleeping_Room",
+	  		"type": "Nav",
+	  		"location": {"x": 0.5, "y": 0.075, "z": 0.12},
+	  		"distance": 1,
+	  		"originalRoom":"MainHall",
+	  		"img": "ovenland3.JPG",
+	  		"id": 2
+  	  }
+	  ],
+ 	  "backgroundAudio": "``",
+ 	  "img": "Sc3-Goggles.jpg",
+ 	  "adjacentRooms": ["MainHall"]
+ 	},
+ 	{
+ 	  "roomName": "Sleeping_Room",
+ 	  "info":"``",
+	  "interactions": [
+	  	  {
+	  		  "destination": "MainHall",
+	  		  "type": "Nav",
+	  		  "location": {"x": 3.13, "y": -0.014, "z": null},
+	  		  "distance": 1,
+	  		  "originalRoom": "Sleeping_Room",
+	  		  "img": "ovenland2.JPG",
+	  		  "id": 3
+	  		}
+	  ],
+ 	  "backgroundAudio": "``",
+ 	  "img": "Sc4-VampDinos.jpg",
+ 	  "adjacentRooms": ["MainHall"]
+ 	},
+ 	{
+ 	  "roomName": "Mushroom_Room",
+ 	  "info": "``",
+ 	  "interactions": [
+
+ 	  ],
+ 	  "backgroundAudio": "``",
+ 	  "img": "Chapter5.jpg",
+ 	  "adjacentRooms": ["Breakfast_Nook","MainHall"]
+ 	},
+ 	{
+ 	  "roomName": "Feast_Hall",
+ 	  "info": "``",
+	  "interactions": [
+  		{
+  	  }
+	  ],
+ 	  "backgroundAudio": "``",
+ 	  "img": "Chapter-6-Final.jpg",
+ 	  "adjacentRooms": ["Mushroom_Room"]
+ 	},
+ 	{
+ 	  "roomName": "Feast_Hall",
+ 	  "info": "``",
+	  "interactions": [
+  		{
+  	  }
+	  ],
+ 	  "backgroundAudio": "``",
+ 	  "img": "Chapter7-Final-V2.jpg",
+ 	  "adjacentRooms": ["Mushroom_Room"]
+ 	},
+ 	{
+ 	  "roomName": "Feast_Hall",
+ 	  "info": "``",
+	  "interactions": [
+  		{
+  	  }
+	  ],
+ 	  "backgroundAudio": "``",
+ 	  "img": "Chapter8-FINAL.jpg",
+ 	  "adjacentRooms": ["Mushroom_Room"]
+ 	},
+ 	{
+ 	  "roomName": "Feast_Hall",
+ 	  "info": "``",
+	  "interactions": [
+  		{
+  	  }
+	  ],
+ 	  "backgroundAudio": "``",
+ 	  "img": "Chapter9-Final-Wtext.jpg",
+ 	  "adjacentRooms": ["Mushroom_Room"]
+ 	},
+ 	{
+ 	  "roomName": "Feast_Hall",
+ 	  "info": "``",
+	  "interactions": [
+  		{
+
+  	  }
+	  ],
+ 	  "backgroundAudio": "``",
+ 	  "img": "Chapter10Final.jpg",
+ 	  "adjacentRooms": ["Mushroom_Room"]
+ 	}
+]
