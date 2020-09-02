@@ -5,7 +5,7 @@ import {ReactInstance, Surface} from 'react-360-web';
 import interactions from './data/interactions';
 
 function init(bundle, parent, options = {}) {
-  const r360 = new ReactInstance(bundle, parent, {
+  r360 = new ReactInstance(bundle, parent, {
     // Add custom options here
     fullScreen: true,
     enableHotReload: true,
@@ -66,6 +66,8 @@ function init(bundle, parent, options = {}) {
       // const s = r360.getDefaultSurface();
       // s.resize(10, 10);
   })
+
+
 
   // const buttonsPanel = new Surface(
   //   400, 

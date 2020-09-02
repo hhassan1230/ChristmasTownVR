@@ -65,7 +65,7 @@ class InfoPanel extends React.Component {
         <View style={styles.infoPanel}>
           <Image source={asset('GUI/NaviIcon_24.png')} style={styles.closeButton} />
           { <Image source={asset(this.props.infoImage)} style={{height: '70%', width: '100%'}} /> }
-          <Text style={{fontSize: 20, textAlign: 'center', fontWeight: 'bold', height: '20%', width: '100%'}}>{ this.props.info }</Text>
+          <Text style={{fontSize: 35, textAlign: 'center', fontWeight: 'bold', height: '20%', width: '100%'}}>{ this.props.info }</Text>
         </View>
       }
       </View>
@@ -93,7 +93,7 @@ class Button extends React.Component {
               this.setState({
                   roomNow: roomSelection.id
               });
-              console.log("--------------------------------> ", this.props.type, " <--------------------------------");
+              console.log("--------------------------------> ", this.props, " <--------------------------------");
               openModal(roomSelection.id, this.props.type);
           }
           if (this.state.roomNow === roomSelection.id) {
