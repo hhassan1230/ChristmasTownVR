@@ -1,14 +1,17 @@
 // This file contains the boilerplate to execute your React app.
 // If you want to modify your application's content, start in "index.js"
 
-import {ReactInstance, Surface} from 'react-360-web';
+import {ReactInstance, Surface, Module} from 'react-360-web';
 import interactions from './data/interactions';
-
+let r360;
 function init(bundle, parent, options = {}) {
-  const r360 = new ReactInstance(bundle, parent, {
+  r360 = new ReactInstance(bundle, parent, {
     // Add custom options here
     fullScreen: true,
     enableHotReload: true,
+    nativeModules: [
+      new CustomLinkingModule()
+    ],
     ...options,
   });
 
@@ -56,8 +59,8 @@ function init(bundle, parent, options = {}) {
         )
       }
 
-      console.log("========================= THat ", recenterInfoPanel);
-      buttonInteraction.recenter = recenterInfoPanel;
+      // console.log("========================= THat ", recenterInfoPanel);
+      // buttonInteraction.recenter = recenterInfoPanel;
       r360.renderToSurface(
         r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
         buttonsPanel
@@ -88,5 +91,19 @@ function init(bundle, parent, options = {}) {
     r360.compositor.setBackground(r360.getAssetURL('/PANO_ART/ovenland1.JPG'));
 
 }
+
+class CustomLinkingModule extends Module {
+  constructor() {
+    super('CustomLinkingModule');
+  }
+  recenterModal(){
+    // r360.start();
+    const cameraQuat = r360.getCameraQuaternion()
+    const panelSurface = r360.compositor._surfaceManager._surfaces.surface_0;
+    panelSurface.recenter(cameraQuat, 'all')
+    // console.log("Getting surface",r360.compositor._surfaceManager._surfaces.surface_0);
+  }
+}
+
 
 window.React360 = {init};

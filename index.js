@@ -95,6 +95,8 @@ class Button extends React.Component {
               });
               console.log("--------------------------------> ", this.props.type, " <--------------------------------");
               openModal(roomSelection.id, this.props.type);
+              NativeModules.CustomLinkingModule.recenterModal()
+
           }
           if (this.state.roomNow === roomSelection.id) {
               closeModal();
@@ -114,7 +116,7 @@ class Button extends React.Component {
   render() {
     const buttonIcon = icon[this.props.type];
 
-
+    console.log("PROPSSS", this.props)
     return(
       <View>
         {this.state.active &&
@@ -134,13 +136,13 @@ class Button extends React.Component {
 export default class ButtonPanel extends React.Component {
 
   render() {
-    // console.log(" 000000000000000 Button ", this.props);
+    console.log(" 000000000000000 Button ", this.props);
     
     return (
       <View>
         {this.props.buttonInteraction.originalRoom === getCurrentRoom() &&
           <View style={styles.buttonPanel}>
-            { <Button type={this.props.buttonInteraction.type} recenter={this.props.recenterInfoPanel} key={`${this.props.buttonInteraction.roomName}` + '-button'} id={ this.props.buttonInteraction.id } room={ this.props.buttonInteraction.roomName }/> }
+            { <Button type={this.props.buttonInteraction.type} key={`${this.props.buttonInteraction.roomName}` + '-button'} id={ this.props.buttonInteraction.id } room={ this.props.buttonInteraction.roomName }/> }
             {/* <AudioPanel /> */}
           </View>
         }
