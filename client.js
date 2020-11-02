@@ -3,7 +3,7 @@
 
 import {ReactInstance, Surface, Module} from 'react-360-web';
 import interactions from './data/interactions';
-let r360;
+// let r360;
 function init(bundle, parent, options = {}) {
   r360 = new ReactInstance(bundle, parent, {
     // Add custom options here
@@ -15,7 +15,7 @@ function init(bundle, parent, options = {}) {
     ...options,
   });
 
-  const infoPanel = new Surface(
+  infoPanel = new Surface(
     800, 
     950, 
     Surface.SurfaceShape.Flat
@@ -39,7 +39,7 @@ function init(bundle, parent, options = {}) {
   const that = this;
 
   interactions.forEach((buttonInteraction, i) => {
-      const buttonsPanel = new Surface(
+      buttonsPanel = new Surface(
         250, 
         250, 
         Surface.SurfaceShape.Flat
@@ -99,8 +99,8 @@ class CustomLinkingModule extends Module {
   recenterModal(){
     // r360.start();
     const cameraQuat = r360.getCameraQuaternion()
-    const panelSurface = r360.compositor._surfaceManager._surfaces.surface_0;
-    panelSurface.recenter(cameraQuat, 'all')
+    // const panelSurface = r360.compositor._surfaceManager._surfaces.surface_0;
+    infoPanel.recenter(cameraQuat, 'all')
     // console.log("Getting surface",r360.compositor._surfaceManager._surfaces.surface_0);
   }
 }
