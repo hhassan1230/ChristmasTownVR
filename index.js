@@ -53,6 +53,14 @@ class InfoPanel extends React.Component {
   state = {
     active: getCurrentModalState(),
     id: null,
+    hover: false
+  }
+  
+  closePanel(){
+    this.setState({hover: false});
+    // console.log("modal State on closebtn: ", getCurrentModalState())
+    closeModal()
+    // console.log("modal State on closebtn: ", getCurrentModalState())
   }
 
   render() {
@@ -63,7 +71,15 @@ class InfoPanel extends React.Component {
       {getCurrentModalState() &&
 
         <View style={styles.infoPanel}>
-          <Image source={asset('GUI/NaviIcon_24.png')} style={styles.closeButton} />
+            <VrButton
+              style={styles.closeBtnContainer}
+              onEnter={() => this.setState({hover: true})}
+              onExit={() => this.setState({hover: false})}
+              onClick={() => this.closePanel() }>
+                < Image source={asset('GUI/NaviIcon_24.png')} 
+                  style={this.state.hover ?  styles.closeBtnHover : styles.closeBtn}
+                />
+            </VrButton>
           { <Image source={asset(this.props.infoImage)} style={{height: '70%', width: '100%'}} /> }
           <Text style={{fontSize: 20, textAlign: 'center', fontWeight: 'bold', height: '20%', width: '100%'}}>{ this.props.info }</Text>
         </View>
@@ -86,22 +102,24 @@ class Button extends React.Component {
           changeRoom(roomSelection.room);
       } else if (this.props.type === 'Print' || this.props.type === 'Picture') {
           // console.log('-------------------------------- In clickHandler ' + JSON.stingify(this));
-
+          console.log("modal State onclickHandler: ", getCurrentModalState() )
           // Print & Picture
           // Show Info Panel 
-          if (!this.state.roomNow || this.state.roomNow !== roomSelection.id) {
-              this.setState({
-                  roomNow: roomSelection.id
-              });
-              console.log("--------------------------------> ", this.props.type, " <--------------------------------");
+          // if (!this.state.roomNow || this.state.roomNow !== roomSelection.id) {
+              // this.setState({
+              //     roomNow: roomSelection.id
+              // });
+              // console.log("--------------------------------> ", this.props.type, " <--------------------------------");
               openModal(roomSelection.id, this.props.type);
               NativeModules.CustomLinkingModule.recenterModal()
-
-          }
-          if (this.state.roomNow === roomSelection.id) {
-              closeModal();
-              this.setState({ roomNow: null });
-          }
+              console.log("modal State: ", getCurrentModalState())
+          // }
+          // if (this.state.roomNow === roomSelection.id && getCurrentModalState()) {
+          //   console.log("closing modal")
+          //     closeModal();
+          //     this.setState({ roomNow: null });
+          //     console.log("modal State: ", getCurrentModalState())
+          // }
 
           // this.props.recenter();
       } else {
@@ -111,12 +129,10 @@ class Button extends React.Component {
 
   }
 
-
-
   render() {
     const buttonIcon = icon[this.props.type];
 
-    console.log("PROPSSS", this.props)
+    // console.log("PROPSSS", this.props)
     return(
       <View>
         {this.state.active &&
@@ -136,7 +152,7 @@ class Button extends React.Component {
 export default class ButtonPanel extends React.Component {
 
   render() {
-    console.log(" 000000000000000 Button ", this.props);
+    // console.log(" 000000000000000 Button ", this.props);
     
     return (
       <View>
@@ -183,11 +199,21 @@ const styles = StyleSheet.create({
   arrowButtonContainerHover: {
     width: 250,
   },
-  closeButton: {
+  closeBtnContainer: {
     marginLeft: 'auto',
     height: '10%',
     width: '10%',
+    borderRightColor: 'black',
     right: 0,
+  },
+  closeBtn:{
+    width: 100,
+    height: 100,
+  },
+  closeBtnHover:{
+    width: 100,
+    height: 100,
+    backgroundColor: 'red'
   },
   infoPanel: {
     display: 'flex',
@@ -207,12 +233,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center'
   },
-  button: {
-    width: 200,
-    backgroundColor: 'rgb(0, 0, 0)',
-    borderColor: 'rgb(255, 255, 255)',
-    borderWidth: 5,
-  },
+  // button: {
+  //   width: 200,
+  //   backgroundColor: 'rgb(0, 0, 0)',
+  //   borderColor: 'rgb(255, 255, 255)',
+  //   borderWidth: 5,
+  // },
   hover: {
     width: 200,
     backgroundColor: 'rgb(0, 45, 72)',
