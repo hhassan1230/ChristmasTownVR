@@ -28,13 +28,14 @@ function init(bundle, parent, options = {}) {
 
   r360.renderToSurface(
     r360.createRoot('ConnectedInfoPanel', {  }),
-    infoPanel
+    infoPanel,
+    'infoPanel'
   );
 
-  function recenterInfoPanel() {
-      const cameraQuat = r360.getCameraQuaternion();
-      infoPanel.recenter(cameraQuat, 'all');
-  }
+  // function recenterInfoPanel() {
+  //     const cameraQuat = r360.getCameraQuaternion();
+  //     infoPanel.recenter(cameraQuat, 'all');
+  // }
 
   const that = this;
 
@@ -61,10 +62,19 @@ function init(bundle, parent, options = {}) {
 
       // console.log("========================= THat ", recenterInfoPanel);
       // buttonInteraction.recenter = recenterInfoPanel;
-      r360.renderToSurface(
-        r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
-        buttonsPanel
-      );
+      if(buttonInteraction.type !== 'Nav'){
+        console.log("ID: ", `${buttonInteraction.type}-${buttonInteraction.id}`)
+        r360.renderToSurface(
+          r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
+          buttonsPanel,
+          `${buttonInteraction.type}-${buttonInteraction.id}`
+        );
+      } else{
+        r360.renderToSurface(
+          r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
+          buttonsPanel
+        );
+      }
 
       // const s = r360.getDefaultSurface();
       // s.resize(10, 10);
@@ -96,12 +106,25 @@ class CustomLinkingModule extends Module {
   constructor() {
     super('CustomLinkingModule');
   }
-  recenterModal(){
-    // r360.start();
+  recenterModalAndHideBtnSurface(name){
     const cameraQuat = r360.getCameraQuaternion()
+    for(const surfaceName in r360.compositor._surfaceManager._surfaces){
+      let surface = r360.compositor._surfaceManager.getSurface(surfaceName)
+      r360.compositor._surfaceManager.showSurface(surface)
+    }
+
+    let surface = r360.compositor._surfaceManager.getSurface(name)
+    r360.compositor._surfaceManager.hideSurface(surface)
+    console.log("CAMERAAA", cameraQuat)
     // const panelSurface = r360.compositor._surfaceManager._surfaces.surface_0;
     infoPanel.recenter(cameraQuat, 'all')
-    // console.log("Getting surface",r360.compositor._surfaceManager._surfaces.surface_0);
+  }
+  closeModalAndShowBtnSurface(){
+    for(const surfaceName in r360.compositor._surfaceManager._surfaces){
+      // console.log('NAME: ',surfaceName)
+      let surface = r360.compositor._surfaceManager.getSurface(surfaceName)
+      r360.compositor._surfaceManager.showSurface(surface)
+    }
   }
 }
 

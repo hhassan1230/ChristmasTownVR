@@ -59,6 +59,7 @@ class InfoPanel extends React.Component {
   closePanel(){
     this.setState({hover: false});
     // console.log("modal State on closebtn: ", getCurrentModalState())
+    NativeModules.CustomLinkingModule.closeModalAndShowBtnSurface()
     closeModal()
     // console.log("modal State on closebtn: ", getCurrentModalState())
   }
@@ -102,26 +103,10 @@ class Button extends React.Component {
           changeRoom(roomSelection.room);
       } else if (this.props.type === 'Print' || this.props.type === 'Picture') {
           // console.log('-------------------------------- In clickHandler ' + JSON.stingify(this));
-          console.log("modal State onclickHandler: ", getCurrentModalState() )
-          // Print & Picture
-          // Show Info Panel 
-          // if (!this.state.roomNow || this.state.roomNow !== roomSelection.id) {
-              // this.setState({
-              //     roomNow: roomSelection.id
-              // });
-              // console.log("--------------------------------> ", this.props.type, " <--------------------------------");
-              openModal(roomSelection.id, this.props.type);
-              NativeModules.CustomLinkingModule.recenterModal()
-              console.log("modal State: ", getCurrentModalState())
-          // }
-          // if (this.state.roomNow === roomSelection.id && getCurrentModalState()) {
-          //   console.log("closing modal")
-          //     closeModal();
-          //     this.setState({ roomNow: null });
-          //     console.log("modal State: ", getCurrentModalState())
-          // }
-
-          // this.props.recenter();
+          // console.log("modal State onclickHandler: ", getCurrentModalState() )
+          openModal(roomSelection.id, this.props.type);
+          NativeModules.CustomLinkingModule.recenterModalAndHideBtnSurface(`${this.props.type}-${roomSelection.id}`, roomSelection.room)
+          console.log("modal State: ", getCurrentModalState())
       } else {
           // Sounds Maybe???
 
@@ -158,7 +143,12 @@ export default class ButtonPanel extends React.Component {
       <View>
         {this.props.buttonInteraction.originalRoom === getCurrentRoom() &&
           <View style={styles.buttonPanel}>
-            { <Button type={this.props.buttonInteraction.type} key={`${this.props.buttonInteraction.roomName}` + '-button'} id={ this.props.buttonInteraction.id } room={ this.props.buttonInteraction.roomName }/> }
+            { <Button 
+              type={this.props.buttonInteraction.type} 
+              key={`${this.props.buttonInteraction.roomName}` + '-button'} 
+              id={ this.props.buttonInteraction.id } 
+              room={ this.props.buttonInteraction.roomName }
+              /> }
             {/* <AudioPanel /> */}
           </View>
         }

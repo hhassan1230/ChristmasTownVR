@@ -109,16 +109,16 @@ export default interactions = [
     img: 'ovenland1.JPG',
     id: 2
   },
-  {
-    roomName: 'Entry',
-    type: `Picture`,
-    location: {x: 1.60, y: 0.71, z: null},
-    distance: 1,
-    originalRoom: `Entry`,
-    Picture: null,
-    img: 'ovenland1.JPG',
-    id: 1
-  },
+  // {
+  //   roomName: 'Entry',
+  //   type: `Picture`,
+  //   location: {x: 1.60, y: 0.71, z: null},
+  //   distance: 1,
+  //   originalRoom: `Entry`,
+  //   Picture: null,
+  //   img: 'ovenland1.JPG',
+  //   id: 1
+  // },
   {
     roomName: 'MainHall',
     type: `Picture`,
