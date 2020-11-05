@@ -126,6 +126,48 @@ class CustomLinkingModule extends Module {
       r360.compositor._surfaceManager.showSurface(surface)
     }
   }
+  changeRoom(){
+    interactions.forEach((buttonInteraction, i) => {
+      buttonsPanel = new Surface(
+        250, 
+        250, 
+        Surface.SurfaceShape.Flat
+      );
+      console.log(buttonInteraction.id);
+
+      if (buttonInteraction.location.z) {
+        buttonsPanel.setAngle(
+          buttonInteraction.location.x,
+          buttonInteraction.location.y,
+          buttonInteraction.location.z,
+        )
+      } else {
+        buttonsPanel.setAngle(
+          buttonInteraction.location.x,
+          buttonInteraction.location.y,
+        )
+      }
+
+      // console.log("========================= THat ", recenterInfoPanel);
+      // buttonInteraction.recenter = recenterInfoPanel;
+      if(buttonInteraction.type !== 'Nav'){
+        console.log("ID: ", `${buttonInteraction.type}-${buttonInteraction.id}`)
+        r360.renderToSurface(
+          r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
+          buttonsPanel,
+          // `${buttonInteraction.type}-${buttonInteraction.id}`
+        );
+      } else{
+        r360.renderToSurface(
+          r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
+          buttonsPanel
+        );
+      }
+      r360.compositor.setBackground(r360.getAssetURL('/PANO_ART/ovenland2.JPG'));
+      // const s = r360.getDefaultSurface();
+      // s.resize(10, 10);
+    })
+  }
 }
 
 

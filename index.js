@@ -100,7 +100,8 @@ class Button extends React.Component {
 
   clickHandler(roomSelection) {
       if (this.props.type === 'Nav') {
-          changeRoom(roomSelection.room);
+          // changeRoom(roomSelection.room);
+          NativeModules.CustomLinkingModule.changeRoom()
       } else if (this.props.type === 'Print' || this.props.type === 'Picture') {
           // console.log('-------------------------------- In clickHandler ' + JSON.stingify(this));
           // console.log("modal State onclickHandler: ", getCurrentModalState() )
