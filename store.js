@@ -28,7 +28,7 @@ export function changeRoom(roomSelection) {
   State.room = roomName;
   State.adjacentRooms = house[`${roomName}`].adjacentRooms;
 
-  Environment.setBackgroundImage(asset(`/PANO_ART/${house[`${roomName}`].img}`));
+  // Environment.setBackgroundImage(asset(`/PANO_ART/${house[`${roomName}`].img}`));
 
   State.infoActive = false;
 

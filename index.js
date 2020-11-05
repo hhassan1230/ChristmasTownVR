@@ -100,14 +100,14 @@ class Button extends React.Component {
 
   clickHandler(roomSelection) {
       if (this.props.type === 'Nav') {
-          // changeRoom(roomSelection.room);
-          NativeModules.CustomLinkingModule.changeRoom()
+          changeRoom(roomSelection.room);
+          NativeModules.CustomLinkingModule.changeRoom(roomSelection.room)
       } else if (this.props.type === 'Print' || this.props.type === 'Picture') {
           // console.log('-------------------------------- In clickHandler ' + JSON.stingify(this));
           // console.log("modal State onclickHandler: ", getCurrentModalState() )
           openModal(roomSelection.id, this.props.type);
-          NativeModules.CustomLinkingModule.recenterModalAndHideBtnSurface(`${this.props.type}-${roomSelection.id}`, roomSelection.room)
-          console.log("modal State: ", getCurrentModalState())
+          // NativeModules.CustomLinkingModule.recenterModalAndHideBtnSurface(`${this.props.type}-${roomSelection.id}`, roomSelection.room)
+          // console.log("modal State: ", getCurrentModalState())
       } else {
           // Sounds Maybe???
 
@@ -244,4 +244,5 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('ConnectedButtonPanel', () => ConnectedButtonPanel);
+AppRegistry.registerComponent('EntryButtonPanel', () => ConnectedButtonPanel);
 AppRegistry.registerComponent('ConnectedInfoPanel', () => ConnectedInfoPanel);

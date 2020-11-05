@@ -3,6 +3,8 @@
 
 import {ReactInstance, Surface, Module} from 'react-360-web';
 import interactions from './data/interactions';
+const ROOMS = require('./config.json')
+// console.log(ROOMS["Entry"])
 // let r360;
 function init(bundle, parent, options = {}) {
   r360 = new ReactInstance(bundle, parent, {
@@ -39,7 +41,7 @@ function init(bundle, parent, options = {}) {
 
   const that = this;
 
-  interactions.forEach((buttonInteraction, i) => {
+  ROOMS["Entry"].interactions.forEach((buttonInteraction, i) => {
       buttonsPanel = new Surface(
         250, 
         250, 
@@ -62,19 +64,24 @@ function init(bundle, parent, options = {}) {
 
       // console.log("========================= THat ", recenterInfoPanel);
       // buttonInteraction.recenter = recenterInfoPanel;
-      if(buttonInteraction.type !== 'Nav'){
-        console.log("ID: ", `${buttonInteraction.type}-${buttonInteraction.id}`)
-        r360.renderToSurface(
-          r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
-          buttonsPanel,
-          `${buttonInteraction.type}-${buttonInteraction.id}`
-        );
-      } else{
-        r360.renderToSurface(
+      // if(buttonInteraction.type !== 'Nav'){
+      //   console.log("ID: ", `${buttonInteraction.type}-${buttonInteraction.id}`)
+      //   r360.renderToSurface(
+      //     r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
+      //     buttonsPanel,
+      //     `${buttonInteraction.type}-${buttonInteraction.id}`
+      //   );
+      // } else{
+      //   r360.renderToSurface(
+      //     r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
+      //     buttonsPanel
+      //   );
+      // }
+
+        rootTag = r360.renderToSurface(
           r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
           buttonsPanel
         );
-      }
 
       // const s = r360.getDefaultSurface();
       // s.resize(10, 10);
@@ -98,7 +105,7 @@ function init(bundle, parent, options = {}) {
 
   // Load the initial environment
   // r360.compositor.setBackground(r360.getAssetURL('/PANO_ART/ovenland1.JPG'));
-    r360.compositor.setBackground(r360.getAssetURL('/PANO_ART/ovenland1.JPG'));
+    r360.compositor.setBackground(r360.getAssetURL(ROOMS["Entry"].backgroundUrl));
 
 }
 
@@ -126,8 +133,27 @@ class CustomLinkingModule extends Module {
       r360.compositor._surfaceManager.showSurface(surface)
     }
   }
-  changeRoom(){
-    interactions.forEach((buttonInteraction, i) => {
+  unregisterSurfaces(){
+    // r360.detachRoot(1)
+    // console.log("detaching room")
+    for(const surfaceName in r360.compositor._surfaceManager._surfaces){
+      // console.log("unregisterSurface", surfaceName !== 'infoPanel', surfaceName)
+      if(surfaceName !== 'infoPanel' && surfaceName !== 'default'){
+        let surface = r360.compositor._surfaceManager.getSurface(surfaceName)
+        r360.compositor._surfaceManager.unregisterSurface(surfaceName)
+        r360.detachRoot(surface.rootTag) 
+
+        console.log("unregisterSurface", surfaceName, surface.rootTag)
+        // r360.compositor._surfaceManager.unregisterSurface(surfaceName)
+        // r360.compositor._surfaceManager.showSurface(surface)
+      }
+    }
+  }
+  changeRoom(room){
+    this.unregisterSurfaces()
+    ROOMS[room].interactions.forEach((buttonInteraction, i) => {
+      
+      // console.log("INTERACTION", buttonInteraction)
       buttonsPanel = new Surface(
         250, 
         250, 
@@ -135,38 +161,36 @@ class CustomLinkingModule extends Module {
       );
       console.log(buttonInteraction.id);
 
-      if (buttonInteraction.location.z) {
-        buttonsPanel.setAngle(
+      // if (buttonInteraction.location.z) {
+      buttonsPanel.setAngle(
           buttonInteraction.location.x,
           buttonInteraction.location.y,
           buttonInteraction.location.z,
         )
-      } else {
-        buttonsPanel.setAngle(
-          buttonInteraction.location.x,
-          buttonInteraction.location.y,
-        )
-      }
+      // } else {
+      //   buttonsPanel.setAngle(
+      //     buttonInteraction.location.x,
+      //     buttonInteraction.location.y,
+      //   )
+      // }
 
       // console.log("========================= THat ", recenterInfoPanel);
       // buttonInteraction.recenter = recenterInfoPanel;
-      if(buttonInteraction.type !== 'Nav'){
-        console.log("ID: ", `${buttonInteraction.type}-${buttonInteraction.id}`)
-        r360.renderToSurface(
-          r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
-          buttonsPanel,
-          // `${buttonInteraction.type}-${buttonInteraction.id}`
-        );
-      } else{
+      // if(buttonInteraction.type !== 'Nav'){
+      //   console.log("ID: ", `${buttonInteraction.type}-${buttonInteraction.id}`)
+      //   r360.renderToSurface(
+      //     r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
+      //     buttonsPanel,
+      //     // `${buttonInteraction.type}-${buttonInteraction.id}`
+      //   );
+      // } else{
         r360.renderToSurface(
           r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
           buttonsPanel
         );
-      }
-      r360.compositor.setBackground(r360.getAssetURL('/PANO_ART/ovenland2.JPG'));
-      // const s = r360.getDefaultSurface();
-      // s.resize(10, 10);
+      // }
     })
+    r360.compositor.setBackground(r360.getAssetURL(ROOMS[room].backgroundUrl));
   }
 }
 

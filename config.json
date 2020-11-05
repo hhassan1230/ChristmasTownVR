@@ -1,0 +1,102 @@
+{
+  "Entry": {
+      "roomName": "Entry",
+      "backgroundUrl": "/PANO_ART/ovenland1.JPG",
+      "backgroundType": "Picture",
+      "interactions": [
+          {
+              "roomName": "MainHall",
+              "type": "Nav",
+              "location": {"x": 0.09, "y": -0.32, "z": 0},
+              "distance": 1,
+              "originalRoom": "Entry",
+              "img": "ovenland2.JPG",
+              "id": 1
+          },
+          {
+              "roomName": "Entry",
+              "type": "Picture",
+              "location": {"x": -1.68, "y": 0.4, "z": null},
+              "distance": 1,
+              "originalRoom": "Entry",
+              "Picture": null,
+              "img": "ovenland1.JPG",
+              "id": 1
+          },
+          {
+              "roomName": "Entry",
+              "type": "Picture",
+              "location": {"x": 1.60, "y": 0.71, "z": null},
+              "distance": 1,
+              "originalRoom": "Entry",
+              "Picture": null,
+              "img": "ovenland1.JPG",
+              "id": 2
+          },
+            {
+              "roomName": "Entry",
+              "type": "Print",
+              "location": {"x": 0.087, "y": 0.64, "z": null},
+              "distance": 1,
+              "originalRoom": "Entry",
+              "Picture": null,
+              "img": "ovenland2.JPG",
+              "id": 101
+            }
+      ]
+  },
+  "MainHall":  {
+      "roomName": "MainHall",
+      "backgroundUrl": "/PANO_ART/ovenland2.JPG",
+      "backgroundType": "Picture",
+      "interactions": [
+          {
+              "roomName": "Kitchen",
+              "type": "Nav",
+              "location": {"x": 700.05, "y": 0.095, "z": -0.05},
+              "distance": 1,
+              "originalRoom": "MainHall",
+              "img": "ovenland4.JPG",
+              "id": 2
+            },
+            {
+              "roomName": "Mushroom_Room",
+              "type": "Nav",
+              "location": {"x": 1.55, "y": 0.039, "z": null},
+              "distance": 1,
+              "originalRoom": "MainHall",
+              "img": "ovenland5.JPG",
+              "id": 2
+            },
+            {
+              "roomName": "Entry",
+              "type": "Nav",
+              "location": {"x": -1.53, "y": 0.045, "z": 0.12}, //Need to do the negative Gangsta Lean
+              "distance": 1,
+              "originalRoom": "MainHall",
+              "img": "ovenland1.JPG",
+              "id": 2
+            },
+            {
+              "roomName": "MainHall",
+              "type": "Picture",
+              "location": {"x": -0.48, "y": 0.80, "z": null},
+              "distance": 0.07,
+              "originalRoom": "MainHall",
+              "Picture": null,
+              "img": "ovenland2.JPG",
+              "id": 3
+            },
+            {
+              "roomName": "MainHall",
+              "type": "Print",
+              "location": {"x": 1.51, "y": 0.465, "z": null},
+              "distance": 1,
+              "originalRoom": "MainHall",
+              "Picture": null,
+              "img": "ovenland2.JPG",
+              "id": 102
+            }
+      ]
+  } 
+}
