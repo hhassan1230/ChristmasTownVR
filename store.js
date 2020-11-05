@@ -2,16 +2,18 @@
 import React from 'react';
 import { asset, Environment } from 'react-360';
 import house from './data/tourData';
-import copy from './data/copy';
-import printables from './data/printables';
+import VideoModule from 'VideoModule';
+const ROOMS = require('./config.json')
+
+// import copy from './data/copy';
+// import printables from './data/printables';
 
 const State = {
   room: house.Entry.roomName,
   infoActive: false,
-  infoImage: copy[0].img,
-  info: copy[0].info,
+  infoImage: '',
+  info: '',
   adjacentRooms: house.Entry.adjacentRooms,
-  loading: false
 }
 
 const listeners = new Set();
@@ -29,6 +31,32 @@ export function changeRoom(roomSelection) {
   State.room = roomName;
   State.adjacentRooms = house[`${roomName}`].adjacentRooms;
 
+  if(ROOMS[roomSelection].backgroundType === 'Picture'){
+    Environment.setBackgroundImage(asset(ROOMS[roomName].backgroundUrl), {
+      transition: 1000,
+    })
+  } else if(ROOMS[roomSelection].backgroundType === 'Video'){
+    videoPlayer = VideoModule.createPlayer('videoPlayer'); // Bike.mp4
+    this.videoPlayer.play({
+      source: { url: asset(ROOMS[roomName].backgroundUrl).uri},
+      muted: true
+    });
+
+    // this.bikingVideo.setLoop(true);
+    if(ROOMS[roomName].loop){
+      this.videoPlayer.addListener('onVideoStatusChanged', (e) => {
+        if (e.status === 'finished') {
+            // console.log('Event', e);
+            this.videoPlayer.resume()
+        }
+      });
+    }
+
+    Environment.setBackgroundVideo('videoPlayer', { rotateTransform: [{rotateY: '180deg'}] });
+  } else {
+    //background type error
+  }
+
   // Environment.setBackgroundImage(asset(`/PANO_ART/${house[`${roomName}`].img}`));
 
   State.infoActive = false;
@@ -36,38 +64,13 @@ export function changeRoom(roomSelection) {
   updateComponents();
 }
 
-export function setLoading(value) {
-  State.loading = value
-}
 
-export function getLoading() {
-  return State.loading 
-}
-
-
-export function openModal(id, type) {
-	console.log('We in that changeModal with ' + id + " & This == " + this);
+export function openModal(room, interactionId) {
+	// console.log('We in that changeModal with ' + id + " & This == " + this);
 	// infoImage
-	let matchingInfo;
-  // debugger;
-	if (type === "Picture") {
-		 matchingInfo = copy.filter(function(contact) { return contact.id == id; });
-	} else {
-			matchingInfo = printables.filter(function(contact) { return contact.id == id; });
-	}
-	// Find ID
-	// debugger;
-	// Add Images & Text Based off ID
-
-  // const cameraQuat = r360.getCameraQuaternion();
-  // infoPanel.recenter(cameraQuat, 'all');
-
-  // Display True
-  // this.setState({
-  // 	infoActive: true,
-  // });
-  State.infoImage = matchingInfo[0].img;
-  State.info = type === "Picture" ? matchingInfo[0].info : "This image is available for Download & Coloring on the home page";
+	let matchingInfo = ROOMS[room].interactions.filter(interaction => interaction.id === interactionId)[0];
+  State.infoImage = matchingInfo.url_or_path;
+  State.info = matchingInfo.info; 
   State.infoActive = true;
   updateComponents();
   // React360.recenterInfoPanel();
