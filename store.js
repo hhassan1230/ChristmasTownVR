@@ -10,7 +10,8 @@ const State = {
   infoActive: false,
   infoImage: copy[0].img,
   info: copy[0].info,
-  adjacentRooms: house.Entry.adjacentRooms
+  adjacentRooms: house.Entry.adjacentRooms,
+  loading: false
 }
 
 const listeners = new Set();
@@ -34,6 +35,15 @@ export function changeRoom(roomSelection) {
 
   updateComponents();
 }
+
+export function setLoading(value) {
+  State.loading = value
+}
+
+export function getLoading() {
+  return State.loading 
+}
+
 
 export function openModal(id, type) {
 	console.log('We in that changeModal with ' + id + " & This == " + this);

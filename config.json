@@ -78,6 +78,15 @@
               "id": 2
             },
             {
+              "roomName": "Sleeping_Room",
+              "type": "Nav",
+              "location": {"x": 0.5, "y": 0.075, "z": 0.12}, // Don"t Fuck with this
+              "distance": 1,
+              "originalRoom":"MainHall",
+              "img": "ovenland3.JPG",
+              "id": 2
+            },
+            {
               "roomName": "MainHall",
               "type": "Picture",
               "location": {"x": -0.48, "y": 0.80, "z": null},

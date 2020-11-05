@@ -66,11 +66,11 @@ function init(bundle, parent, options = {}) {
       // buttonInteraction.recenter = recenterInfoPanel;
       // if(buttonInteraction.type !== 'Nav'){
       //   console.log("ID: ", `${buttonInteraction.type}-${buttonInteraction.id}`)
-      //   r360.renderToSurface(
-      //     r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
-      //     buttonsPanel,
-      //     `${buttonInteraction.type}-${buttonInteraction.id}`
-      //   );
+        r360.renderToSurface(
+          r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
+          buttonsPanel,
+          `${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`
+        );
       // } else{
       //   r360.renderToSurface(
       //     r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
@@ -78,10 +78,10 @@ function init(bundle, parent, options = {}) {
       //   );
       // }
 
-        rootTag = r360.renderToSurface(
-          r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
-          buttonsPanel
-        );
+        // rootTag = r360.renderToSurface(
+        //   r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
+        //   buttonsPanel
+        // );
 
       // const s = r360.getDefaultSurface();
       // s.resize(10, 10);
@@ -133,9 +133,9 @@ class CustomLinkingModule extends Module {
       r360.compositor._surfaceManager.showSurface(surface)
     }
   }
-  unregisterSurfaces(){
+  async unregisterSurfaces(){
     // r360.detachRoot(1)
-    // console.log("detaching room")
+    console.log("waiting")
     for(const surfaceName in r360.compositor._surfaceManager._surfaces){
       // console.log("unregisterSurface", surfaceName !== 'infoPanel', surfaceName)
       if(surfaceName !== 'infoPanel' && surfaceName !== 'default'){
@@ -143,14 +143,15 @@ class CustomLinkingModule extends Module {
         r360.compositor._surfaceManager.unregisterSurface(surfaceName)
         r360.detachRoot(surface.rootTag) 
 
-        console.log("unregisterSurface", surfaceName, surface.rootTag)
         // r360.compositor._surfaceManager.unregisterSurface(surfaceName)
         // r360.compositor._surfaceManager.showSurface(surface)
       }
     }
+    return;
   }
-  changeRoom(room){
-    this.unregisterSurfaces()
+  async updateInteractions(room){
+    await this.unregisterSurfaces()
+    console.log("Done Waiting")
     ROOMS[room].interactions.forEach((buttonInteraction, i) => {
       
       // console.log("INTERACTION", buttonInteraction)
@@ -186,10 +187,14 @@ class CustomLinkingModule extends Module {
       // } else{
         r360.renderToSurface(
           r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
-          buttonsPanel
+          buttonsPanel,
+          `${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`
         );
       // }
     })
+    
+    console.log("SURFACESSS 2:", r360.compositor._surfaceManager._surfaces)
+
     r360.compositor.setBackground(r360.getAssetURL(ROOMS[room].backgroundUrl));
   }
 }

@@ -101,12 +101,13 @@ class Button extends React.Component {
   clickHandler(roomSelection) {
       if (this.props.type === 'Nav') {
           changeRoom(roomSelection.room);
-          NativeModules.CustomLinkingModule.changeRoom(roomSelection.room)
+          NativeModules.CustomLinkingModule.updateInteractions(roomSelection.room)
       } else if (this.props.type === 'Print' || this.props.type === 'Picture') {
           // console.log('-------------------------------- In clickHandler ' + JSON.stingify(this));
           // console.log("modal State onclickHandler: ", getCurrentModalState() )
+          console.log(roomSelection, this.props)
           openModal(roomSelection.id, this.props.type);
-          // NativeModules.CustomLinkingModule.recenterModalAndHideBtnSurface(`${this.props.type}-${roomSelection.id}`, roomSelection.room)
+          NativeModules.CustomLinkingModule.recenterModalAndHideBtnSurface(`${roomSelection.room}-${this.props.type}-${roomSelection.id}`)
           // console.log("modal State: ", getCurrentModalState())
       } else {
           // Sounds Maybe???
