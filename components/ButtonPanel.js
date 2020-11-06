@@ -31,7 +31,7 @@ class Button extends React.Component {
             // console.log("modal State onclickHandler: ", getCurrentModalState() )
             console.log(roomSelection.room, this.props)
             openModal(roomSelection.room , roomSelection.id);
-            NativeModules.CustomLinkingModule.recenterModalAndHideBtnSurface(`${roomSelection.room}-${this.props.type}-${roomSelection.id}`)
+            NativeModules.CustomLinkingModule.recenterModalAndHideBtnSurface()
             // console.log("modal State: ", getCurrentModalState())
         } else {
             // Sounds Maybe???
@@ -105,8 +105,6 @@ export default class ButtonPanel extends React.Component {
       flexDirection: 'column',
       justifyContent: 'space-around',
       alignItems: 'center',
-      borderWidth: 3,
-      borderColor: 'black'
     },
   });
   

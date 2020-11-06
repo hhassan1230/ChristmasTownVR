@@ -61,51 +61,16 @@ function init(bundle, parent, options = {}) {
           buttonInteraction.location.y,
         )
       }
-
-      // console.log("========================= THat ", recenterInfoPanel);
-      // buttonInteraction.recenter = recenterInfoPanel;
-      // if(buttonInteraction.type !== 'Nav'){
-      //   console.log("ID: ", `${buttonInteraction.type}-${buttonInteraction.id}`)
-        r360.renderToSurface(
-          r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
-          buttonsPanel,
-          `${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`
-        );
-      // } else{
-      //   r360.renderToSurface(
-      //     r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
-      //     buttonsPanel
-      //   );
-      // }
-
-        // rootTag = r360.renderToSurface(
-        //   r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
-        //   buttonsPanel
-        // );
-
-      // const s = r360.getDefaultSurface();
-      // s.resize(10, 10);
+      r360.renderToSurface(
+        r360.createRoot('ConnectedButtonPanel', { buttonInteraction }),
+        buttonsPanel,
+        `${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`
+      );
   })
 
-  // const buttonsPanel = new Surface(
-  //   400, 
-  //   550, 
-  //   Surface.SurfaceShape.Flat
-  // );
-
-  // buttonsPanel.setAngle(
-  //   -0.6,
-  //   0.1
-  // )
-
-  // r360.renderToSurface(
-  //   r360.createRoot('ConnectedButtonInfoPanel', { /* initial props */ }),
-  //   buttonsPanel
-  // );
-
-  // Load the initial environment
-  // r360.compositor.setBackground(r360.getAssetURL('/PANO_ART/ovenland1.JPG'));
-    r360.compositor.setBackground(r360.getAssetURL(ROOMS["Entry"].backgroundUrl));
+    r360.compositor.setBackground(r360.getAssetURL(ROOMS["Entry"].backgroundUrl),{
+      transition: 1000
+    });
 
 }
 
@@ -113,27 +78,26 @@ class CustomLinkingModule extends Module {
   constructor() {
     super('CustomLinkingModule');
   }
-  recenterModalAndHideBtnSurface(name){
+  recenterModalAndHideBtnSurface(){
     this.closeModalAndShowBtnSurface()
     const cameraQuat = r360.getCameraQuaternion()
-    // let surface = r360.compositor._surfaceManager.getSurface(name)
-    // r360.compositor._surfaceManager.hideSurface(surface)
-    // console.log("CAMERAAA", cameraQuat)
-    // const panelSurface = r360.compositor._surfaceManager._surfaces.surface_0;
     infoPanel.recenter(cameraQuat, 'all')
     this.hideSurfacesInPanelArea()
   }
   hideSurfacesInPanelArea(){
-    console.log("INFOPANEL:",infoPanel)
-    // console.log(r360.compositor._surfaceManager._surfaces)
     for(const surfaceName in r360.compositor._surfaceManager._surfaces){
       if(surfaceName !== 'infoPanel' && surfaceName !== 'default'){
         let surface = r360.compositor._surfaceManager.getSurface(surfaceName)
-        // r360.compositor._surfaceManager.showSurface(surface)
-        console.log(surfaceName, surface)
-      }
+        let pointX = Math.round(Math.pow((infoPanel._yaw - surface._yaw), 2)*100)/100;
+        let pointY = Math.round(Math.pow((infoPanel._pitch - surface._pitch), 2)*100)/100;
+        let pointZ = Math.round(Math.pow((infoPanel._roll - surface._roll), 2)*100)/100;
+        let d = Math.round(Math.sqrt(pointX + pointY + pointZ)*100)/100
 
-      // console.log('NAME: ',surfaceName)
+        // console.log(d, "infoPanel", infoPanel, surfaceName, surface)
+        if(d < 0.65){
+          r360.compositor._surfaceManager.hideSurface(surface)
+        }
+      }
     }
   }
   closeModalAndShowBtnSurface(){

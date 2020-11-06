@@ -55,7 +55,7 @@
           {
               "roomName": "Kitchen",
               "type": "Nav",
-              "location": {"x": 700.05, "y": 0.095, "z": -0.05},
+              "location": {"x": 2.6123, "y": 0.095, "z": null},
               "distance": 1,
               "originalRoom": "MainHall",
               "img": "ovenland4.JPG",
