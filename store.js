@@ -30,7 +30,7 @@ export function changeRoom(roomSelection) {
 
   State.room = roomName;
   State.adjacentRooms = house[`${roomName}`].adjacentRooms;
-
+  // let url_or_path = ROOMS[roomName].backgroundUrl.includes('//') ? 'url': 'path'
   if(ROOMS[roomSelection].backgroundType === 'Picture'){
     Environment.setBackgroundImage(asset(ROOMS[roomName].backgroundUrl), {
       transition: 1000,

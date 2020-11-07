@@ -93,7 +93,7 @@ class CustomLinkingModule extends Module {
         let pointZ = Math.round(Math.pow((infoPanel._roll - surface._roll), 2)*100)/100;
         let d = Math.round(Math.sqrt(pointX + pointY + pointZ)*100)/100
 
-        // console.log(d, "infoPanel", infoPanel, surfaceName, surface)
+        console.log(d, "infoPanel", infoPanel, surfaceName, surface)
         if(d < 0.65){
           r360.compositor._surfaceManager.hideSurface(surface)
         }
