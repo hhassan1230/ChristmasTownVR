@@ -27,6 +27,21 @@ function init(bundle, parent, options = {}) {
     0.6,
     0.1
   )
+  
+  AudioPanel = new Surface(
+    100, 
+    100, 
+    Surface.SurfaceShape.Flat
+  );
+
+  AudioPanel.setAngle(Math.PI / 5, Math.PI / 8.5)
+  
+
+  r360.renderToSurface(
+    r360.createRoot('ConnectedAudioPanel', {  }),
+    AudioPanel,
+    'AudioPanel'
+  );
 
   r360.renderToSurface(
     r360.createRoot('ConnectedInfoPanel', {  }),
@@ -67,10 +82,11 @@ function init(bundle, parent, options = {}) {
         `${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`
       );
   })
-
-    r360.compositor.setBackground(r360.getAssetURL(ROOMS["Entry"].backgroundUrl),{
-      transition: 1000
-    });
+  //fetching images from google drive is not working for some reason, alternatively, we could use imgBB
+  let url_or_path = ROOMS["Entry"].backgroundUrl.includes('//') ? ROOMS["Entry"].backgroundUrl : r360.getAssetURL(ROOMS["Entry"].backgroundUrl);
+  r360.compositor.setBackground(url_or_path,{
+    transition: 1000
+  });
 
 }
 

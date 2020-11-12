@@ -12,6 +12,8 @@ import {
 import { connect, changeRoom, openModal, closeModal, getCurrentRoom, getCurrentModalState } from './store';
 import ButtonPanel from './components/ButtonPanel'
 import InfoPanel from './components/InfoPanel'
+import AudioPanel from './components/AudioPanel'
+
 
 // import { connect } from 'react-redux';
 
@@ -51,6 +53,7 @@ import InfoPanel from './components/InfoPanel'
 
 const ConnectedButtonPanel = connect(ButtonPanel);
 const ConnectedInfoPanel = connect(InfoPanel);
+const ConnectedAudioPanel = connect(AudioPanel);
 
 // const styles = StyleSheet.create({
 //   audioPanel: {
@@ -60,3 +63,4 @@ const ConnectedInfoPanel = connect(InfoPanel);
 
 AppRegistry.registerComponent('ConnectedButtonPanel', () => ConnectedButtonPanel);
 AppRegistry.registerComponent('ConnectedInfoPanel', () => ConnectedInfoPanel);
+AppRegistry.registerComponent('ConnectedAudioPanel', () => ConnectedAudioPanel);

@@ -30,9 +30,9 @@ export function changeRoom(roomSelection) {
 
   State.room = roomName;
   State.adjacentRooms = house[`${roomName}`].adjacentRooms;
-  // let url_or_path = ROOMS[roomName].backgroundUrl.includes('//') ? 'url': 'path'
+  let url_or_path = ROOMS[roomName].backgroundUrl.includes('//') ? ROOMS[roomName].backgroundUrl : asset(ROOMS[roomName].backgroundUrl);
   if(ROOMS[roomSelection].backgroundType === 'Picture'){
-    Environment.setBackgroundImage(asset(ROOMS[roomName].backgroundUrl), {
+    Environment.setBackgroundImage(url_or_path, {
       transition: 1000,
     })
   } else if(ROOMS[roomSelection].backgroundType === 'Video'){
