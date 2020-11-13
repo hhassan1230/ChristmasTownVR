@@ -1,16 +1,35 @@
 // This file contains the boilerplate to execute your React app.
 // If you want to modify your application's content, start in "index.js"
 
-import {ReactInstance, Surface, Module} from 'react-360-web';
+import {Math as VRMath, ReactInstance, Surface, Module} from 'react-360-web';
 // import interactions from './data/interactions';
 const ROOMS = require('./config.json')
 // console.log(ROOMS["Entry"])
 // let r360;
 function init(bundle, parent, options = {}) {
+  AudioPanel = new Surface(100, 100, Surface.SurfaceShape.Flat );
+  const cameraDirection = [0, 0, -1];
+
   r360 = new ReactInstance(bundle, parent, {
     // Add custom options here
     fullScreen: true,
     enableHotReload: true,
+    // frame: () => {
+    //   const cameraQuat = r360.getCameraQuaternion();
+    //   cameraDirection[0] = 0;
+    //   cameraDirection[1] = 0;
+    //   cameraDirection[2] = -1;
+    //   // cameraDirection will point out from the view of the camera,
+    //   // we can use it to compute surface angles
+    //   VRMath.rotateByQuaternion(cameraDirection, cameraQuat);
+    //   const cx = cameraDirection[0];
+    //   const cy = cameraDirection[1];
+    //   const cz = cameraDirection[2];
+    //   const horizAngle = Math.atan2(cx, -cz);
+    //   const vertAngle = Math.asin(cy / Math.sqrt(cx * cx + cy * cy + cz * cz));
+    //   // horizontalPanel.setAngle(horizAngle, -0.5);
+    //   AudioPanel.setAngle(horizAngle, vertAngle);
+    // },
     nativeModules: [
       new CustomLinkingModule()
     ],
@@ -28,11 +47,6 @@ function init(bundle, parent, options = {}) {
     0.1
   )
   
-  AudioPanel = new Surface(
-    100, 
-    100, 
-    Surface.SurfaceShape.Flat
-  );
 
   AudioPanel.setAngle(Math.PI / 5, Math.PI / 8.5)
   
