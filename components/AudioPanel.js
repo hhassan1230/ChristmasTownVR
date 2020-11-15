@@ -50,11 +50,12 @@ export default class AudioPanel extends React.Component {
   const styles = StyleSheet.create({
     audioPanel: {
       flexDirection: 'row',
-      // borderWidth: 2,
-      // borderColor: 'black',
+      borderWidth: 1,
+      borderColor: 'rgb(0, 0, 0)',
+      backgroundColor: 'rgb(224, 253, 234)',
+      borderRadius: 50,
       width: 80,
-      height: 80,
-      // opacity: .5,
+      height: 70,
       alignContent: 'center'
     }
   });
