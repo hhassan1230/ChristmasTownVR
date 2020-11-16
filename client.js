@@ -4,7 +4,7 @@
 import {ReactInstance, Surface, Module} from 'react-360-web';
 import { Math as GLMath } from "webgl-ui";
 // import interactions from './data/interactions';
-const ROOMS = require('./config.json')
+const house = require('./config.json')
 // console.log(ROOMS["Entry"])
 // let r360;
 function init(bundle, parent, options = {}) {
@@ -15,24 +15,27 @@ function init(bundle, parent, options = {}) {
     // Add custom options here
     fullScreen: true,
     enableHotReload: true,
-    frame: () => {
-      const cameraQuat = r360.getCameraQuaternion();
-      cameraDirection[0] = .75;
-      cameraDirection[1] = .47;
-      cameraDirection[2] = -1;
-      // cameraDirection will point out from the view of the camera,
-      // we can use it to compute surface angles
-      rotateByQuaternion(cameraDirection, cameraQuat);
+    // frame ?  (function frame() { null}) : (function frame() { null}),
+    frame: (house.settings.audioAnchor === "top-right") && (
+      () => { 
+        const cameraQuat = r360.getCameraQuaternion();
+        cameraDirection[0] = .75;
+        cameraDirection[1] = .47;
+        cameraDirection[2] = -1;
+        // cameraDirection will point out from the view of the camera,
+        // we can use it to compute surface angles
+        rotateByQuaternion(cameraDirection, cameraQuat);
 
-      const cx = cameraDirection[0];
-      const cy = cameraDirection[1];
-      const cz = cameraDirection[2];
-      
-      const horizAngle = Math.atan2(cx, -cz);
-      const vertAngle = Math.asin(cy / Math.sqrt(cx * cx + cy * cy + cz * cz));
-      // console.log(cx, cy, cz, horizAngle, vertAngle)
-      AudioPanel.setAngle(horizAngle, vertAngle, -.2);
-    },
+        const cx = cameraDirection[0];
+        const cy = cameraDirection[1];
+        const cz = cameraDirection[2];
+        
+        const horizAngle = Math.atan2(cx, -cz);
+        const vertAngle = Math.asin(cy / Math.sqrt(cx * cx + cy * cy + cz * cz));
+        // console.log(cx, cy, cz, horizAngle, vertAngle)
+        AudioPanel.setAngle(horizAngle, vertAngle, -.2);
+      }
+    ),
     nativeModules: [
       new CustomLinkingModule()
     ],
@@ -50,8 +53,11 @@ function init(bundle, parent, options = {}) {
     0.1
   )
   
+  if(house.settings.audioAnchor === "bottom"){
+    AudioPanel.setAngle(0, -Math.PI / 2)
+    console.log("calling")
+  }
 
-  // AudioPanel.setAngle(Math.PI / 5, Math.PI / 8.5)
   
 
   r360.renderToSurface(
@@ -73,7 +79,7 @@ function init(bundle, parent, options = {}) {
 
   const that = this;
 
-  ROOMS["Entry"].interactions.forEach((buttonInteraction, i) => {
+  house.rooms["Entry"].interactions.forEach((buttonInteraction, i) => {
       buttonsPanel = new Surface(
         250, 
         250, 
@@ -100,7 +106,7 @@ function init(bundle, parent, options = {}) {
       );
   })
   //fetching images from google drive is not working for some reason, alternatively, we could use imgBB
-  let url_or_path = ROOMS["Entry"].backgroundUrl.includes('//') ? ROOMS["Entry"].backgroundUrl : r360.getAssetURL(ROOMS["Entry"].backgroundUrl);
+  let url_or_path = house.rooms["Entry"].backgroundUrl.includes('//') ? house.rooms["Entry"].backgroundUrl : r360.getAssetURL(house.rooms["Entry"].backgroundUrl);
   r360.compositor.setBackground(url_or_path,{
     transition: 1000
   });
@@ -126,7 +132,7 @@ class CustomLinkingModule extends Module {
         let pointZ = Math.round(Math.pow((infoPanel._roll - surface._roll), 2)*100)/100;
         let d = Math.round(Math.sqrt(pointX + pointY + pointZ)*100)/100
 
-        console.log(d, "infoPanel", infoPanel, surfaceName, surface)
+        // console.log(d, "infoPanel", infoPanel, surfaceName, surface)
         if(d < 0.65){
           r360.compositor._surfaceManager.hideSurface(surface)
         }
@@ -159,7 +165,7 @@ class CustomLinkingModule extends Module {
   updateInteractions(room){
     this.unregisterSurfaces()
     setTimeout(() => {
-      ROOMS[room].interactions.forEach((buttonInteraction, i) => {
+      house.rooms[room].interactions.forEach((buttonInteraction, i) => {
       
       // console.log("INTERACTION", buttonInteraction)
       buttonsPanel = new Surface(
@@ -186,10 +192,11 @@ class CustomLinkingModule extends Module {
           buttonsPanel,
           `${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`
         );
+        console.log(`${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`)
     })
     }, 1700);
 
-    console.log("SURFACESSS 2:", r360.compositor._surfaceManager._surfaces)
+    // console.log("SURFACESSS 2:", r360.compositor._surfaceManager._surfaces)
 
     // r360.compositor.setBackground(r360.getAssetURL(ROOMS[room].backgroundUrl));
   }

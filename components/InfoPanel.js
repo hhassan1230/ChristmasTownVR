@@ -44,7 +44,7 @@ export default class InfoPanel extends React.Component {
                   />
               </VrButton>
             { <Image source={asset(this.props.infoImage)} style={{height: '70%', width: '100%'}} /> }
-            <Text style={{fontSize: 20, textAlign: 'center', fontWeight: 'bold', height: '20%', width: '100%'}}>{ this.props.info }</Text>
+            <Text style={styles.text}>{ this.props.info }</Text>
           </View>
         }
         </View>
@@ -58,8 +58,8 @@ export default class InfoPanel extends React.Component {
         width: 800,
         height: 950,
         opacity: 1,
-        backgroundColor: 'rgb(255, 200, 50)',
-        borderColor: 'rgb(255, 255, 255)',
+        backgroundColor: '#CD853F',
+        borderColor: '#D2B48C',
         borderWidth: 5,
         borderRadius: 20
     },
@@ -79,5 +79,13 @@ export default class InfoPanel extends React.Component {
         height: 100,
         backgroundColor: 'red'
     },
+    text: {
+      fontSize: 25, 
+      // color: "#000000",
+      textAlign: 'center', 
+      fontWeight: 'bold', 
+      height: '20%', 
+      width: '100%'
+    }
   })
   

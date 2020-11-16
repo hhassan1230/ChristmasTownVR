@@ -1,19 +1,19 @@
 
 import React from 'react';
 import { asset, Environment } from 'react-360';
-import house from './data/tourData';
+// import house from './data/tourData';
 import VideoModule from 'VideoModule';
-const ROOMS = require('./config.json')
+const house = require('./config.json')
 
 // import copy from './data/copy';
 // import printables from './data/printables';
 
 const State = {
-  room: house.Entry.roomName,
+  room: house.rooms.Entry.roomName,
   infoActive: false,
   infoImage: '',
   info: '',
-  adjacentRooms: house.Entry.adjacentRooms,
+  adjacentRooms: house.rooms.Entry.adjacentRooms,
 }
 
 const listeners = new Set();
@@ -29,21 +29,21 @@ export function changeRoom(roomSelection) {
   let roomName = roomSelection;
 
   State.room = roomName;
-  State.adjacentRooms = house[`${roomName}`].adjacentRooms;
-  let url_or_path = ROOMS[roomName].backgroundUrl.includes('//') ? ROOMS[roomName].backgroundUrl : asset(ROOMS[roomName].backgroundUrl);
-  if(ROOMS[roomSelection].backgroundType === 'Picture'){
+  State.adjacentRooms = house.rooms[`${roomName}`].adjacentRooms;
+  let url_or_path = house.rooms[roomName].backgroundUrl.includes('//') ? house.rooms[roomName].backgroundUrl : asset(house.rooms[roomName].backgroundUrl);
+  if(house.rooms[roomSelection].backgroundType === 'Picture'){
     Environment.setBackgroundImage(url_or_path, {
       transition: 1000,
     })
-  } else if(ROOMS[roomSelection].backgroundType === 'Video'){
+  } else if(house.rooms[roomSelection].backgroundType === 'Video'){
     videoPlayer = VideoModule.createPlayer('videoPlayer'); // Bike.mp4
     this.videoPlayer.play({
-      source: { url: asset(ROOMS[roomName].backgroundUrl).uri},
+      source: { url: asset(house.rooms[roomName].backgroundUrl).uri},
       muted: true
     });
 
     // this.bikingVideo.setLoop(true);
-    if(ROOMS[roomName].loop){
+    if(house.rooms[roomName].loop){
       this.videoPlayer.addListener('onVideoStatusChanged', (e) => {
         if (e.status === 'finished') {
             // console.log('Event', e);
@@ -68,7 +68,7 @@ export function changeRoom(roomSelection) {
 export function openModal(room, interactionId) {
 	// console.log('We in that changeModal with ' + id + " & This == " + this);
 	// infoImage
-	let matchingInfo = ROOMS[room].interactions.filter(interaction => interaction.id === interactionId)[0];
+	let matchingInfo = house.rooms[room].interactions.filter(interaction => interaction.id === interactionId)[0];
   State.infoImage = matchingInfo.url_or_path;
   State.info = matchingInfo.info; 
   State.infoActive = true;
