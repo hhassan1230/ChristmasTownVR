@@ -16,7 +16,7 @@ function init(bundle, parent, options = {}) {
     fullScreen: true,
     enableHotReload: true,
     // frame ?  (function frame() { null}) : (function frame() { null}),
-    frame: (house.settings.audioAnchor === "top-right") && (
+    frame: (house.settings.audio.audioAnchor === "top-right") && (
       () => { 
         const cameraQuat = r360.getCameraQuaternion();
         cameraDirection[0] = .75;
@@ -53,7 +53,7 @@ function init(bundle, parent, options = {}) {
     0.1
   )
   
-  if(house.settings.audioAnchor === "bottom"){
+  if(house.settings.audio.audioAnchor === "bottom"){
     AudioPanel.setAngle(0, -Math.PI / 2)
     console.log("calling")
   }
@@ -144,6 +144,15 @@ class CustomLinkingModule extends Module {
       // console.log('NAME: ',surfaceName)
       let surface = r360.compositor._surfaceManager.getSurface(surfaceName)
       r360.compositor._surfaceManager.showSurface(surface)
+    }
+  }
+  hideFlaggedSurfaces(room){
+    if(house.settings.flaggedInteractionsToHide[room]){
+      console.log("Hidingg flagged Interactions")
+      house.settings.flaggedInteractionsToHide[room].forEach(surfaceName => {
+        let surface = r360.compositor._surfaceManager.getSurface(surfaceName)
+        r360.compositor._surfaceManager.hideSurface(surface)
+      })
     }
   }
   unregisterSurfaces(){

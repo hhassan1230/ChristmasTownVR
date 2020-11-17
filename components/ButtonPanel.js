@@ -32,6 +32,7 @@ class Button extends React.Component {
             console.log(roomSelection.room, this.props)
             openModal(roomSelection.room , roomSelection.id);
             NativeModules.CustomLinkingModule.recenterModalAndHideBtnSurface()
+            NativeModules.CustomLinkingModule.hideFlaggedSurfaces(roomSelection.room)
             // console.log("modal State: ", getCurrentModalState())
         } else {
             // Sounds Maybe???

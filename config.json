@@ -2,7 +2,7 @@
   "rooms": {
     "Entry": {
         "roomName": "Entry",
-        "backgroundUrl": "/PANO_ART/ovenland1.JPG",
+        "backgroundUrl": "https://fabian339.imgbb.com/",
         "loop": null,
         "backgroundType": "Picture",
         "adjacentRooms": ["MainHall"],
@@ -299,8 +299,12 @@
     }
   },
   "settings": {
-    "audioAnchor": "top-right",
-    "hideInteractionsOnOpenPanel": {
+    "audio": {
+      "audioAnchor": "top-right",
+      "url_or_pathOn": "https://ibb.co/M5kRsKj",
+      "url_or_pathOff": "https://ibb.co/L0R2Pmy"
+    },
+    "flaggedInteractionsToHide": {
       "Mushroom_Room": ["Mushroom_Room-Picture-3", "Mushroom_Room-Print-4"],
       "Breakfast_Nook": ["Breakfast_Nook-Picture-2", "Breakfast_Nook-Picture-3", "Breakfast_Nook-Picture-4", "Breakfast_Nook-Print-5"]
     }
