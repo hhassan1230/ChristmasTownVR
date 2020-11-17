@@ -35,14 +35,14 @@ export default class AudioPanel extends React.Component {
     }
   
     render() {
-      let url_or_pathOn = house.settings.audio.url_or_pathOn.includes('//') ? house.settings.audio.url_or_pathOn : asset(house.settings.audio.url_or_pathOn);
-      let url_or_pathOff = house.settings.audio.url_or_pathOff.includes('//') ? house.settings.audio.url_or_pathOff : asset(house.settings.audio.url_or_pathOff);
+      let url_or_pathOn = house.settings.audio.url_or_pathOn.includes('//') ? {uri: house.settings.audio.url_or_pathOn } : asset(house.settings.audio.url_or_pathOn);
+      let url_or_pathOff = house.settings.audio.url_or_pathOff.includes('//') ? {uri: house.settings.audio.url_or_pathOff } : asset(house.settings.audio.url_or_pathOff);
 
-      console.log("URLLL", url_or_pathOn)
+      // console.log("URLLL", url_or_pathOn)
       return(
         <View style={styles.audioPanel}>
           <VrButton onClick={() => this.state.playing ?  this.stopAmbientMusic() : this.playAmbientMusic()}>
-            <Image style={{height: 60, width: 60, marginLeft: 20, marginRight: 20}} source={{uri: this.state.playing ? url_or_pathOn : url_or_pathOff}} />
+            <Image style={{height: 60, width: 60, marginLeft: 20, marginRight: 20}} source={this.state.playing ? url_or_pathOn : url_or_pathOff} />
           </VrButton>
           {/* <VrButton onClick={() => this.stopAmbientMusic()}>
             <Image style={{height: 50, width: 50}} source={{uri: 'https://hhassan1230.github.io/science-barge-tour/static_assets/audioOff.png'}} />

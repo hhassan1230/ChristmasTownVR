@@ -7,6 +7,7 @@ import { Math as GLMath } from "webgl-ui";
 const house = require('./config.json')
 // console.log(ROOMS["Entry"])
 // let r360;
+// headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
 function init(bundle, parent, options = {}) {
   AudioPanel = new Surface(100, 100, Surface.SurfaceShape.Flat );
   const cameraDirection = [0, 0, -1];
