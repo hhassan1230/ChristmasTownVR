@@ -1,7 +1,6 @@
 <html>
   <head>
     <title>ChristmasTownVR</title>
-    <style>body { margin: 0; } .button-grow { transition: all .2s ease-in-out; text-align: center;} .button-grow:hover { transform: scale(1.1); }</style>
     <link rel="stylesheet" href="./styles/output.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <script type="text/javascript" src="https://spectorcdn.babylonjs.com/spector.bundle.js"></script>
@@ -69,7 +68,7 @@
                         </div>
                         <div class="column-xs-12 column-md-10">
                           <div class="image-holder">
-                            <img src="https://source.unsplash.com/Pz3EHf-KJfc">
+                            <!-- <img src="https://source.unsplash.com/Pz3EHf-KJfc"> -->
                           </div>
                           <div class="grid">
                             <div class="column-xs-12 column-md-9">
@@ -164,17 +163,22 @@
 
     // Initialize the React 360 application
     function enterApp() {
+      const elem = document.getElementById('initialize');
+        while(elem.firstChild){
+          elem.firstChild.remove()
+        }
+        // console.log("My element", elem)
+
         React360.init(
             'index.bundle?platform=vr&dev=true',
             document.getElementById('initialize'), {
                 assetRoot: 'static_assets/',
             }
         );
-
-        const elem = document.getElementById('placeHolder');
-        elem.parentNode.removeChild(elem);
-
-        document.querySelectorAll("*").forEach(el => el.style.margin = "0px");
+        document.querySelectorAll("*").forEach(el => {
+          el.style.margin = "0px";
+          el.style.boxSizing = "inherit"
+        });
     }
     // DEBUGGING
     // enterApp();

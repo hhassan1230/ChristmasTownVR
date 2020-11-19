@@ -298,6 +298,7 @@
   "settings": {
     "audio": {
       "audioAnchor": "top-right",
+      "soundOnEnter": false,
       "url_or_pathOn": "https://i.ibb.co/CsKnz4X/audioOn.png",
       "url_or_pathOff": "https://i.ibb.co/6ywfZzS/audioOff.png"
     },

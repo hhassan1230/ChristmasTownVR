@@ -13,7 +13,18 @@ body {
   color: #8d8d8d;
   background: #fff;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden; }
+  overflow-x: hidden; 
+  margin: 0;
+}
+
+.button-grow { 
+  transition: all .2s ease-in-out; 
+  text-align: center;
+} 
+
+.button-grow:hover {
+    transform: scale(1.1); 
+  }
 
 a {
   color: #8d8d8d;

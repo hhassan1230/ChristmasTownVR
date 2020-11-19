@@ -13,10 +13,12 @@ const house = require('../config.json')
 
 export default class AudioPanel extends React.Component {
     state = {
-        playing: true
+        playing: house["settings"].audio.soundOnEnter
     }
     componentDidMount(){
+      if(this.state.playing){
         this.playAmbientMusic();
+      }
     }
 
     playAmbientMusic() {
