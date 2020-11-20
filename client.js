@@ -6,8 +6,6 @@ import { Math as GLMath } from "webgl-ui";
 // import interactions from './data/interactions';
 const house = require('./config.json')
 // console.log(ROOMS["Entry"])
-// let r360;
-// headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
 function init(bundle, parent, options = {}) {
   AudioPanel = new Surface(100, 100, Surface.SurfaceShape.Flat );
   const cameraDirection = [0, 0, -1];
@@ -16,7 +14,7 @@ function init(bundle, parent, options = {}) {
     // Add custom options here
     fullScreen: true,
     enableHotReload: true,
-    // frame ?  (function frame() { null}) : (function frame() { null}),
+    // this function will only run when posution of audioBtn is top-right
     frame: (house.settings.audio.audioAnchor === "top-right") && (
       () => { 
         const cameraQuat = r360.getCameraQuaternion();
@@ -157,7 +155,6 @@ class CustomLinkingModule extends Module {
     }
   }
   unregisterSurfaces(){
-    // r360.detachRoot(1)
     console.log("waiting")
     for(const surfaceName in r360.compositor._surfaceManager._surfaces){
       // console.log("unregisterSurface", surfaceName !== 'infoPanel', surfaceName)
@@ -165,9 +162,6 @@ class CustomLinkingModule extends Module {
         let surface = r360.compositor._surfaceManager.getSurface(surfaceName)
         r360.compositor._surfaceManager.unregisterSurface(surfaceName)
         r360.detachRoot(surface.rootTag) 
-
-        // r360.compositor._surfaceManager.unregisterSurface(surfaceName)
-        // r360.compositor._surfaceManager.showSurface(surface)
       }
     }
     return;
@@ -205,10 +199,6 @@ class CustomLinkingModule extends Module {
         console.log(`${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`)
     })
     }, 1700);
-
-    // console.log("SURFACESSS 2:", r360.compositor._surfaceManager._surfaces)
-
-    // r360.compositor.setBackground(r360.getAssetURL(ROOMS[room].backgroundUrl));
   }
 }
 

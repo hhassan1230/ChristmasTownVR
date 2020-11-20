@@ -3,13 +3,12 @@ import {
   asset,
   Image,
   NativeModules,
-  AppRegistry,
   StyleSheet,
   Text,
   View,
   VrButton
 } from 'react-360';
-import { connect, changeRoom, openModal, closeModal, getCurrentRoom, getCurrentModalState } from '../store';
+import { closeModal, getCurrentModalState } from '../store';
 
 export default class InfoPanel extends React.Component {
     state = {
@@ -74,15 +73,16 @@ export default class InfoPanel extends React.Component {
     closeBtn:{
         width: 100,
         height: 100,
+        borderRadius: 100
     },
-        closeBtnHover:{
-        width: 100,
-        height: 100,
-        backgroundColor: 'red'
+      closeBtnHover:{
+      width: 100,
+      height: 100,
+      borderRadius: 100,
+      backgroundColor: '#802000'
     },
     text: {
       fontSize: 25, 
-      // color: "#000000",
       textAlign: 'center', 
       fontWeight: 'bold', 
       height: '20%', 
