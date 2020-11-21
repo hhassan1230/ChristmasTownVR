@@ -146,7 +146,7 @@ class CustomLinkingModule extends Module {
     }
   }
   hideFlaggedSurfaces(room){
-    if(house.settings.flaggedInteractionsToHide[room]){
+    if(house.settings.flaggedInteractionsToHide && house.settings.flaggedInteractionsToHide[room]){
       console.log("Hidingg flagged Interactions")
       house.settings.flaggedInteractionsToHide[room].forEach(surfaceName => {
         let surface = r360.compositor._surfaceManager.getSurface(surfaceName)
@@ -199,6 +199,20 @@ class CustomLinkingModule extends Module {
         console.log(`${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`)
     })
     }, 1700);
+  }
+  open(url) {
+    const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      window.location = new URL(url, window.location);
+    }
+    if (
+      /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+        ua
+      )
+    ) {
+      window.location = new URL(url, window.location);
+    }
+      window.open(url) 
   }
 }
 

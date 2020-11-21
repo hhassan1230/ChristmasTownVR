@@ -11,6 +11,7 @@ const house = require('./config.json')
 const State = {
   room: house.rooms.Entry.roomName,
   infoActive: false,
+  infoType: '',
   infoImage: '',
   info: '',
   adjacentRooms: house.rooms.Entry.adjacentRooms,
@@ -68,7 +69,8 @@ export function changeRoom(roomSelection) {
 export function openModal(room, interactionId) {
 	// console.log('We in that changeModal with ' + id + " & This == " + this);
 	// infoImage
-	let matchingInfo = house.rooms[room].interactions.filter(interaction => interaction.id === interactionId)[0];
+  let matchingInfo = house.rooms[room].interactions.filter(interaction => interaction.id === interactionId)[0];
+  State.infoType = matchingInfo.type;
   State.infoImage = matchingInfo.url_or_path;
   State.info = matchingInfo.info; 
   State.infoActive = true;
@@ -99,6 +101,7 @@ export function connect(Component) {
       room: State.room,
       infoActive: State.infoActive,
       info: State.info,
+      infoType: State.infoType,
 		  infoImage: State.infoImage,
       adjacentRooms: State.adjacentRooms
     };
@@ -108,6 +111,7 @@ export function connect(Component) {
         room: State.room,
         infoActive: State.infoActive,
         info: State.info,
+        infoType: State.infoType,
         infoImage: State.infoImage,
         adjacentRooms: State.adjacentRooms
       });
@@ -124,6 +128,7 @@ export function connect(Component) {
           room={this.state.room}
           infoActive={this.state.infoActive}
           info={this.state.info}
+          infoType={this.state.infoType}
           infoImage={this.state.infoImage}
           adjacentRooms={this.state.adjacentRooms}
         />

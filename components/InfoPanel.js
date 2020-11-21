@@ -27,8 +27,16 @@ export default class InfoPanel extends React.Component {
   
     render() {
       console.log(" -------------------------------------------------- InfoPanel active ", this.state.active + " == " + "getCurrentModalState() " + getCurrentModalState());
-      let url_or_path = this.props.infoImage.includes('//') ? {uri: this.props.infoImage } : asset(this.props.infoImage);
-
+      // let imgFetching = this.props.infoImage.includes('//') ? 'remote' : asset(this.props.infoImage);
+      let url_or_path = '';
+      if(this.props.infoImage.includes('//')){
+        url_or_path = {uri: this.props.infoImage }
+        remote = true;
+      } else {
+        url_or_path = asset(this.props.infoImage);
+        remote = false
+      }
+      
       return(
         <View>
         {getCurrentModalState() &&
@@ -44,7 +52,18 @@ export default class InfoPanel extends React.Component {
                   />
               </VrButton>
             { <Image source={url_or_path} style={{height: '70%', width: '100%'}} /> }
-            <Text style={styles.text}>{ this.props.info }</Text>
+            <View>
+              <Text style={styles.text}>{ this.props.info } </Text>
+              {(remote && this.props.infoType === "Print") && (
+              <VrButton
+                onClick={ () => {
+                    NativeModules.CustomLinkingModule.open(url_or_path.uri);
+                }}
+                >
+                <Text style={styles.openPrintImg}>Click To Open Image!!</Text>
+              </VrButton>
+              )}
+            </View>
           </View>
         }
         </View>
@@ -87,6 +106,12 @@ export default class InfoPanel extends React.Component {
       fontWeight: 'bold', 
       height: '20%', 
       width: '100%'
-    }
+    },
+    openPrintImg: {
+      textAlign: 'center',
+      fontSize: 25,
+      color: '#ccffff',
+      fontWeight: 'bold',
+    },
   })
   
