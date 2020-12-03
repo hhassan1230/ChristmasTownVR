@@ -3,7 +3,6 @@
     <title>ChristmasTownVR</title>
     <link rel="stylesheet" href="./styles/output.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <script type="text/javascript" src="https://spectorcdn.babylonjs.com/spector.bundle.js"></script>
   </head>
   <body>
     <!-- Attachment point for your app -->
@@ -18,8 +17,8 @@
                 <div class="column-xs-3 column-md-4">
                   <a href="#" class="toggle-nav">Menu <i class="ion-navicon-round"></i></a>
                   <ul>
-                    <li><a href="//www.michmasharts.com/">About</a></li>
-                    <li><a href="#" onClick="enterApp();">Discover</a></li>
+                    <li><a href="//www.michmasharts.com/">About Artist</a></li>
+                    <li><a href="#" onClick="enterApp();">MiBKG</a></li>
                     <li><a href="#" onClick="enterApp();">Start Your Trip</a></li>
                   </ul>
                 </div>
@@ -35,7 +34,7 @@
                       <div class="grid vertical">
                         <div class="column-xs-12 column-md-2 hide-mobile">
                           <div class="intro">
-                            <a href="#">
+                            <a href="#" onClick="enterApp();">
                               <h1 class="title"><span class="underline">Explore Christmas in Ovenland</span></h1>
                             </a>
                           </div>
@@ -47,7 +46,7 @@
                           <div class="grid">
                             <div class="column-xs-12 column-md-9">
                               <div class="intro show-mobile">
-                                <a href="#">
+                                <a href="#" onClick="enterApp();">
                                   <h1 class="title"><span class="underline">Explore Christmas in Ovenland</span></h1>
                                 </a>
                               </div>
@@ -154,35 +153,10 @@
         </div>
     </div>
     <script src="./client.bundle?platform=vr"></script>
-    <script>
-
-
-      // var spector = new SPECTOR.Spector();
-      // spector.displayUI();
-
-
-    // Initialize the React 360 application
-    function enterApp() {
-      const elem = document.getElementById('initialize');
-        while(elem.firstChild){
-          elem.firstChild.remove()
-        }
-        // console.log("My element", elem)
-
-        React360.init(
-            'index.bundle?platform=vr&dev=true',
-            document.getElementById('initialize'), {
-                assetRoot: 'static_assets/',
-            }
-        );
-        document.querySelectorAll("*").forEach(el => {
-          el.style.margin = "0px";
-          el.style.boxSizing = "inherit"
-        });
-    }
-    // DEBUGGING
-    // enterApp();
-    </script>
+    <script src="//code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <script type="text/javascript" src="//spectorcdn.babylonjs.com/spector.bundle.js"></script>
+    <script type="text/javascript" src="./javascript/landingpage.js"></script>
+    <script src='//cdn.jsdelivr.net/npm/webvr-polyfill@latest/build/webvr-polyfill.js'></script>
   </body>
 </html>
 
