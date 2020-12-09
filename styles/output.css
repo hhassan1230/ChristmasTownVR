@@ -525,16 +525,20 @@ button {
   z-index: 1;
   display: flex;
   justify-content: flex-end;
+  height: 100px;
   padding: 0.25rem 0 0.25rem 0; }
   .controls .previous {
-    border: 1px solid #232323; }
-    .controls .previous:hover i {
-      transform: scale(1.5); }
+    border: 1px solid #232323;
+  }
+    .controls .previous .iconify:hover {      
+      transform: scale(1.5);
+      font-size: 50px; }
   .controls .next {
     border-top: 1px solid #232323;
     border-right: 1px solid #232323;
     border-bottom: 1px solid #232323; }
-    .controls .next:hover i {
+    .controls .next .iconify:hover {
+      font-size: 50px;
       transform: scale(1.5); }
 
 .previous, .next {
@@ -544,8 +548,12 @@ button {
   flex-basis: 15%;
   font-size: 2rem;
   color: #232323; }
-  .previous i, .next i {
-    transition: all 0.1s ease; }
+  .previous .iconify, .next .iconify {
+    transition: all 0.8s; }
+
+.iconify{
+  height: 100%;
+}
 
 .active .image-holder::before {
   position: absolute;

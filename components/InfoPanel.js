@@ -60,7 +60,7 @@ export default class InfoPanel extends React.Component {
                     NativeModules.CustomLinkingModule.open(url_or_path.uri);
                 }}
                 >
-                <Text style={styles.openPrintImg}>Click To Open Image!!</Text>
+                < Image style={styles.openPrintImg} source={{uri: "https://i.ibb.co/vkKZ6hL/PrintV1.png"}} />
               </VrButton>
               )}
             </View>
@@ -98,20 +98,26 @@ export default class InfoPanel extends React.Component {
       width: 100,
       height: 100,
       borderRadius: 100,
-      backgroundColor: '#802000'
+      // backgroundColor: '#802000',
+      backgroundColor: '#DEB887'
     },
     text: {
       fontSize: 25, 
       textAlign: 'center', 
       fontWeight: 'bold', 
-      height: '20%', 
+      marginBottom: 10,
       width: '100%'
     },
     openPrintImg: {
-      textAlign: 'center',
-      fontSize: 25,
-      color: '#ccffff',
-      fontWeight: 'bold',
+      marginTop: 10,
+      borderWidth: 2,
+      backgroundColor: 'black',
+      borderColor: 'black',
+      height: '40',
+      width: '20%',
+      marginLeft: '40%',
+      marginRight: '40%',
+      borderRadius: 20
     },
   })
   
