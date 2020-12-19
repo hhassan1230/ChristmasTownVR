@@ -47,7 +47,7 @@ export default class InfoPanel extends React.Component {
                 onEnter={() => this.setState({hover: true})}
                 onExit={() => this.setState({hover: false})}
                 onClick={() => this.closePanel() }>
-                  < Image source={{uri: "https://i.ibb.co/p3HtGWy/Navi-Icon-24.png"}} 
+                  <Image source={{uri: "https://i.ibb.co/p3HtGWy/Navi-Icon-24.png"}} 
                     style={this.state.hover ?  styles.closeBtnHover : styles.closeBtn}
                   />
               </VrButton>
