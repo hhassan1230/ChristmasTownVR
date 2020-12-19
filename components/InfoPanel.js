@@ -14,15 +14,21 @@ export default class InfoPanel extends React.Component {
     state = {
       active: getCurrentModalState(),
       id: null,
-      hover: false
+      hoverCloseBtn: false,
+      hoverPrintBtn: false
     }
     
     closePanel(){
-      this.setState({hover: false});
+      this.setState({hoverCloseBtn: false});
       // console.log("modal State on closebtn: ", getCurrentModalState())
       NativeModules.CustomLinkingModule.closeModalAndShowBtnSurface()
       closeModal()
       // console.log("modal State on closebtn: ", getCurrentModalState())
+    }
+
+    openPrintable(url_or_path){
+      this.setState({hoverPrintBtn: false});
+      NativeModules.CustomLinkingModule.open(url_or_path.uri);
     }
   
     render() {
@@ -44,11 +50,11 @@ export default class InfoPanel extends React.Component {
           <View style={styles.infoPanel}>
               <VrButton
                 style={styles.closeBtnContainer}
-                onEnter={() => this.setState({hover: true})}
-                onExit={() => this.setState({hover: false})}
+                onEnter={() => this.setState({hoverCloseBtn: true})}
+                onExit={() => this.setState({hoverCloseBtn: false})}
                 onClick={() => this.closePanel() }>
                   < Image source={{uri: "https://i.ibb.co/p3HtGWy/Navi-Icon-24.png"}} 
-                    style={this.state.hover ?  styles.closeBtnHover : styles.closeBtn}
+                    style={this.state.hoverCloseBtn ?  styles.closeBtnHover : styles.closeBtn}
                   />
               </VrButton>
             { <Image source={url_or_path} style={{height: '70%', width: '100%'}} /> }
@@ -56,11 +62,14 @@ export default class InfoPanel extends React.Component {
               <Text style={styles.text}>{ this.props.info } </Text>
               {(remote && this.props.infoType === "Print") && (
               <VrButton
-                onClick={ () => {
-                    NativeModules.CustomLinkingModule.open(url_or_path.uri);
-                }}
+                onEnter={() => this.setState({hoverPrintBtn: true})}
+                onExit={() => this.setState({hoverPrintBtn: false})}
+                onClick={() => this.openPrintable(url_or_path)}
+                style={styles.printBtnContainer}
                 >
-                <Text style={styles.openPrintImg}>Click To Open Image!!</Text>
+                < Image source={{uri: "https://i.ibb.co/vkKZ6hL/PrintV1.png"}} 
+                  style={this.state.hoverPrintBtn ?  styles.printBtnHover : styles.printBtn}
+                />
               </VrButton>
               )}
             </View>
@@ -94,24 +103,44 @@ export default class InfoPanel extends React.Component {
         height: 100,
         borderRadius: 100
     },
-      closeBtnHover:{
+    closeBtnHover:{
       width: 100,
       height: 100,
       borderRadius: 100,
-      backgroundColor: '#802000'
+      backgroundColor: '#DEB887'
     },
     text: {
       fontSize: 25, 
       textAlign: 'center', 
       fontWeight: 'bold', 
-      height: '20%', 
+      marginBottom: 10,
       width: '100%'
     },
-    openPrintImg: {
-      textAlign: 'center',
-      fontSize: 25,
-      color: '#ccffff',
-      fontWeight: 'bold',
+    printBtnContainer: {
+      // borderWidth: 2,
+      // borderColor: "black",
+      width: "25%",
+      height: 80,
+      marginLeft: '37.5',
+      marginRight: '37.5'
+    },
+    printBtn: {
+      marginTop: 10,
+      borderWidth: 2,
+      backgroundColor: 'black',
+      borderColor: 'black',
+      height: 65,
+      width: '100%',
+      borderRadius: 20,
+    },
+    printBtnHover: {
+      marginTop: 10,
+      borderWidth: 2,
+      backgroundColor: 'black',
+      borderColor: 'black',
+      height: 65,
+      width: '100%',
+      borderRadius: 20,
+      borderColor: "#DEB887"
     },
   })
-  
