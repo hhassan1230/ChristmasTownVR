@@ -53,7 +53,7 @@ export default class InfoPanel extends React.Component {
                 onEnter={() => this.setState({hoverCloseBtn: true})}
                 onExit={() => this.setState({hoverCloseBtn: false})}
                 onClick={() => this.closePanel() }>
-                  < Image source={{uri: "https://i.ibb.co/p3HtGWy/Navi-Icon-24.png"}} 
+                  <Image source={{uri: "https://i.ibb.co/p3HtGWy/Navi-Icon-24.png"}} 
                     style={this.state.hoverCloseBtn ?  styles.closeBtnHover : styles.closeBtn}
                   />
               </VrButton>
@@ -67,7 +67,7 @@ export default class InfoPanel extends React.Component {
                 onClick={() => this.openPrintable(url_or_path)}
                 style={styles.printBtnContainer}
                 >
-                < Image source={{uri: "https://i.ibb.co/vkKZ6hL/PrintV1.png"}} 
+                <Image source={{uri: "https://i.ibb.co/vkKZ6hL/PrintV1.png"}} 
                   style={this.state.hoverPrintBtn ?  styles.printBtnHover : styles.printBtn}
                 />
               </VrButton>

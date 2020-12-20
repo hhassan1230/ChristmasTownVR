@@ -1,17 +1,140 @@
 @import url('https://fonts.googleapis.com/css?family=Barlow:400,500,700');
 
+/* 12columns.css | Created by Katherine Kato | Released under the MIT license */
+/* GitHub: https://kathykato.github.io/12columns/ */
+
+$grid-columns: 12;
+
+$sm: 48rem;
+$md: 62rem;
+$lg: 75rem;
+
+.container {
+  margin: auto;
+  padding: 0 1rem;
+  max-width: 71.25rem;
+  width: 100%;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  flex-flow: row wrap;
+  > [class*="column-"] {
+    display: block;
+  }
+}
+
+.first {
+  order: -1;
+}
+
+.last {
+  order: 12;
+}
+
+.align-top {
+  align-items: start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-bottom {
+  align-items: end;
+}
+
+@for $i from 1 through $grid-columns {
+  .column-xs-#{$i} {
+    flex-basis: $i / $grid-columns * 100%;
+    max-width: $i / $grid-columns * 100%;
+  }
+}
+
+@media (min-width: $sm) {
+  @for $i from 1 through $grid-columns {
+    .column-sm-#{$i} {
+      flex-basis: $i / $grid-columns * 100%;
+      max-width: $i / $grid-columns * 100%;
+    }
+  }
+}
+
+@media (min-width: $md) {
+  @for $i from 1 through $grid-columns {
+    .column-md-#{$i} {
+      flex-basis: $i / $grid-columns * 100%;
+      max-width: $i / $grid-columns * 100%;
+    }
+  }
+}
+
+@media (min-width: $lg) {
+  @for $i from 1 through $grid-columns {
+    .column-lg-#{$i} {
+      flex-basis: $i / $grid-columns * 100%;
+      max-width: $i / $grid-columns * 100%;
+    }
+  }
+}
+
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    > [class*="column-"] {
+      margin: 0;
+      max-width: 100%;
+    }
+  }
+
+  @for $i from 1 through $grid-columns {
+    .column-xs-#{$i} {
+      grid-column-start: span #{$i};
+      grid-column-end: span #{$i};
+    }
+  }
+
+  @media(min-width: $sm) {
+    @for $i from 1 through $grid-columns {
+      .column-sm-#{$i} {
+        grid-column-start: span #{$i};
+        grid-column-end: span #{$i};
+      }
+    }
+  }
+
+  @media(min-width: $md) {
+    @for $i from 1 through $grid-columns {
+      .column-md-#{$i} {
+        grid-column-start: span #{$i};
+        grid-column-end: span #{$i};
+      }
+    }
+  }
+
+  @media(min-width: $lg) {
+    @for $i from 1 through $grid-columns {
+      .column-lg-#{$i} {
+        grid-column-start: span #{$i};
+        grid-column-end: span #{$i};
+      }
+    }
+  }
+}
+
 $white: #fff;
 $black: #232323;
 $gray: #8d8d8d;
 $red: #e83f43;
-$md: 1px;
 
 * {
   box-sizing: border-box;
   &::before, &::after {
     box-sizing: border-box;
   }
-  margin: 20px;
 }
 
 body {
@@ -58,9 +181,9 @@ nav {
 }
 
 img {
-	width: 100%;
+  width: 100%;
   height: 43vh;
-	object-fit: cover;
+  object-fit: cover;
 }
 
 .vertical {
