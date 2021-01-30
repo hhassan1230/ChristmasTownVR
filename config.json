@@ -2,9 +2,11 @@
   "rooms": {
     "Entry": {
         "roomName": "Entry",
-        "backgroundUrl": "https://i.ibb.co/g3qNpcf/ovenland1.jpg",
-        "loop": null,
-        "backgroundType": "Picture",
+        "background": {
+          "source": "/PANO_ART/video/4.Sky_Turtle_final_video_orcas_contrast_injected.mp4",
+          "loop": null,
+          "type": "Video"
+        },
         "adjacentRooms": ["MainHall"],
         "interactions": [
             {
@@ -21,9 +23,12 @@
                 "location": {"x": -1.68, "y": 0.4, "z": 0},
                 "distance": 1,
                 "originalRoom": "Entry",
-                "url_or_path": "https://i.ibb.co/z6hR1Ys/OUTSIDE-CASTLE-ROOM-POPUP.jpg",
-                "info": "Lilly got a hostile welcome the first time she fell down her oven into the Ovenland world. Today she is much more welcome. The old fountain is now being used as a skating rink!",
-                "id": 2
+                "id": 2,
+                "display" : {
+                  "type": "Image",
+                  "source": "https://i.ibb.co/z6hR1Ys/OUTSIDE-CASTLE-ROOM-POPUP.jpg",
+                  "text": "Lilly got a hostile welcome the first time she fell down her oven into the Ovenland world. Today she is much more welcome. The old fountain is now being used as a skating rink!"
+                }
             },
             {
                 "roomName": "Entry",
@@ -31,9 +36,12 @@
                 "location": {"x": 1.60, "y": 0.71, "z": 0},
                 "distance": 1,
                 "originalRoom": "Entry",
-                "info": "The Ovenland castle used to be a tower of greasy goo wrapped around stone. The satuses spewed forth hot grease. Since Lilly's first visit, the statues now produce clean water.",
-                "url_or_path": "https://i.ibb.co/fxnM9fP/Castle-Outside.jpg",
-                "id": 3
+                "id": 3,
+                "display" : {
+                  "type": "Image",
+                  "source": "https://i.ibb.co/fxnM9fP/Castle-Outside.jpg",
+                  "text": "The Ovenland castle used to be a tower of greasy goo wrapped around stone. The satuses spewed forth hot grease. Since Lilly's first visit, the statues now produce clean water."
+                }
             },
               {
                 "roomName": "Entry",
@@ -41,17 +49,22 @@
                 "location": {"x": 0.087, "y": 0.64, "z": 0},
                 "distance": 1,
                 "originalRoom": "Entry",
-                "url_or_path": "https://i.ibb.co/4gRrS0S/MUSHROOM-ROOM-PRINTABLE.jpg",
-                "info": "This image is available for Download & Coloring on the home page!",
-                "id": 4
+                "id": 4,
+                "display" : {
+                  "type": "Video",
+                  "source": "/PANO_ART/video/askappsyonkers.mp4",
+                  "text": "This image is available for Download & Coloring on the home page!"
+                }
               }
         ]
     },
     "MainHall":  {
         "roomName": "MainHall",
-        "backgroundUrl": "https://i.ibb.co/1nm2PJJ/ovenland2.jpg",
-        "loop": null,
-        "backgroundType": "Picture",
+        "background": {
+          "source": "/PANO_ART/video/1_VIVE_FOCUS_ELEPHANT_DREAMSCAPE_injected.mp4",
+          "loop": true,
+          "type": "Video"
+        },
         "adjacentRooms": ["Kitchen", "Sleeping_Room", "Mushroom_Room", "Entry"],
         "interactions": [
             {
@@ -96,9 +109,12 @@
                 "location": {"x": -0.48, "y": 0.80, "z": 0},
                 "distance": 0.07,
                 "originalRoom": "MainHall",
-                "url_or_path": "https://i.ibb.co/1JyzQNV/ENTRYWAY-ROOM-POPUP.jpg",
-                "info": "The Queen’s Royal Guard are a tough and surly lot. They were very mean with Lilly and Crumb in their first appearance in Ovenland. I’d say don’t get on their bad side but, I’m not sure they have a GOOD SIDE!",
-                "id": 5
+                "id": 5,
+                "display" : {
+                  "type": "Image",
+                  "source": "https://i.ibb.co/1JyzQNV/ENTRYWAY-ROOM-POPUP.jpg",
+                  "text": "The Queen’s Royal Guard are a tough and surly lot. They were very mean with Lilly and Crumb in their first appearance in Ovenland. I’d say don’t get on their bad side but, I’m not sure they have a GOOD SIDE!"
+                }
               },
               {
                 "roomName": "MainHall",
@@ -106,17 +122,22 @@
                 "location": {"x": 1.51, "y": 0.465, "z": 0},
                 "distance": 1,
                 "originalRoom": "MainHall",
-                "url_or_path": "https://i.ibb.co/5jmzCQx/ENTRYWAY-PRINTABLE.jpg",
-                "info": "This image is available for Download & Coloring on the home page!",
-                "id": 6
+                "id": 6,
+                "display" : {
+                  "type": "Image",
+                  "source": "https://i.ibb.co/5jmzCQx/ENTRYWAY-PRINTABLE.jpg",
+                  "text": "This image is available for Download & Coloring on the home page!"
+                }
               }
         ]
     },
     "Sleeping_Room": {
       "roomName": "Sleeping_Room",
-      "backgroundUrl": "https://i.ibb.co/nPpWJZv/ovenland3.jpg",
-      "loop": null,
-      "backgroundType": "Picture",
+      "background": {
+        "source": "https://i.ibb.co/nPpWJZv/ovenland3.jpg",
+        "loop": null,
+        "type": "Picture"
+      },
       "adjacentRooms": ["MainHall"],
       "interactions": [
         {
@@ -134,9 +155,12 @@
           "location": {"x": 0.62, "y": 0.087, "z": 0.05},
           "distance": 0.07,
           "originalRoom": "Sleeping_Room",
-          "info": "The first meeting between Lilly and Snagglord, the mutant rat was quite a scary one. They’ve become good friends since then. They’ve even gone on more adventures together.",
-          "url_or_path": "https://i.ibb.co/f07dG69/RAT-ROOM-ROOM-POPUP.jpg",
-          "id": 2
+          "id": 2,
+          "display" : {
+            "type": "Image",
+            "source": "https://i.ibb.co/f07dG69/RAT-ROOM-ROOM-POPUP.jpg",
+            "text": "The first meeting between Lilly and Snagglord, the mutant rat was quite a scary one. They’ve become good friends since then. They’ve even gone on more adventures together."
+          }
         },
         {
           "roomName": "Sleeping_Room",
@@ -144,17 +168,22 @@
           "location": {"x": 1.49, "y": 0.61, "z": 0.05},
           "distance": 1,
           "originalRoom": "Sleeping_Room",
-          "url_or_path": "https://i.ibb.co/8dQwTMG/RAT-ROOM-PRINTABLE.jpg",
-          "info": "This image is available for Download & Coloring on the home page!",
-          "id": 3
+          "id": 3,
+          "display" : {
+            "type": "Image",
+            "source": "https://i.ibb.co/8dQwTMG/RAT-ROOM-PRINTABLE.jpg",
+            "text": "This image is available for Download & Coloring on the home page!"
+          }
         }
       ]
     },
     "Mushroom_Room": {
       "roomName": "Mushroom_Room",
-      "backgroundUrl": "https://i.ibb.co/XY1L3MB/ovenland5.jpg",
-      "loop": null,
-      "backgroundType": "Picture",
+      "background": {
+        "source": "https://i.ibb.co/XY1L3MB/ovenland5.jpg",
+        "loop": null,
+        "type": "Picture"
+      },
       "adjacentRooms": ["Breakfast_Nook","MainHall"],
       "interactions": [
         {
@@ -181,9 +210,12 @@
           "location": {"x": 0.0, "y": -4.13, "z": 0},
           "distance": 0.07,
           "originalRoom": "Mushroom_Room",
-          "info": "Mushrooms have made an appearance before in Ovenland. Sometimes they're used as table tops, or seats. They may even be able to be used as steps ;)",
-          "url_or_path": "https://i.ibb.co/n1QsZZ7/MUSHROOM-ROOM-POPUP.jpg",        
-          "id": 3
+          "id": 3,
+          "display" : {
+            "type": "Image",
+            "source": "https://i.ibb.co/n1QsZZ7/MUSHROOM-ROOM-POPUP.jpg",        
+            "text": "Mushrooms have made an appearance before in Ovenland. Sometimes they're used as table tops, or seats. They may even be able to be used as steps ;)"
+          }
         },
         {
           "roomName": "Mushroom_Room",
@@ -191,17 +223,22 @@
           "location": {"x": -1.391, "y": 1.06, "z": 0.31},
           "distance": 1,
           "originalRoom": "Mushroom_Room",
-          "url_or_path": "https://i.ibb.co/wK8L3LX/OUTSIDE-CASTLE-PRINTABLE.jpg",
-          "info": "This image is available for Download & Coloring on the home page!",
-          "id": 4
+          "id": 4,
+          "display" : {
+            "type": "Image",
+            "source": "https://i.ibb.co/wK8L3LX/OUTSIDE-CASTLE-PRINTABLE.jpg",
+            "text": "This image is available for Download & Coloring on the home page!"
+          }
         }
       ]
     },
     "Kitchen": {
       "roomName": "Kitchen",
-      "backgroundUrl": "https://i.ibb.co/D4MZkRz/ovenland4.jpg",
-      "loop": null,
-      "backgroundType": "Picture",
+      "background": {
+        "source": "https://i.ibb.co/D4MZkRz/ovenland4.jpg",
+        "loop": null,
+        "type": "Picture"
+      },
       "adjacentRooms": ["MainHall"],
       "interactions": [
         {
@@ -219,9 +256,12 @@
           "location": {"x": -1.78, "y": 0.70, "z": 0},
           "distance": 0.07,
           "originalRoom": "Kitchen",
-          "info": "Enjoying good food has always been a central theme in Lilly’s adventure. In her earlier adventures, she discovers a very special book in Chef’s secret kitchen hideaway.",
-          "url_or_path": "https://i.ibb.co/Cn791Mv/KITCHEN-ROOM-POPUP.jpg",
-          "id": 2
+          "id": 2,
+          "display" : {
+            "type": "Image",
+            "source": "https://i.ibb.co/Cn791Mv/KITCHEN-ROOM-POPUP.jpg",
+            "text": "Enjoying good food has always been a central theme in Lilly’s adventure. In her earlier adventures, she discovers a very special book in Chef’s secret kitchen hideaway."
+          }
         },
         {
           "roomName": "Kitchen",
@@ -229,17 +269,22 @@
           "location": {"x": -0.11, "y": 0.665, "z": 0},
           "distance": 1,
           "originalRoom": "Kitchen",
-          "url_or_path": "https://i.ibb.co/CB6YfSX/KITCHEN-PRINTABLE.jpg",
-          "info": "This image is available for Download & Coloring on the home page!",
-          "id": 3
+          "id": 3,
+          "display" : {
+            "type": "Image",
+            "source": "https://i.ibb.co/CB6YfSX/KITCHEN-PRINTABLE.jpg",
+            "text": "This image is available for Download & Coloring on the home page!"
+          }
         }
       ]
     },
     "Breakfast_Nook": {
       "roomName": "Breakfast_Nook",
-      "backgroundUrl": "https://i.ibb.co/4NFJ083/ovenland6.jpg",
-      "loop": null,
-      "backgroundType": "Picture",
+      "background": {
+        "source": "https://i.ibb.co/4NFJ083/ovenland6.jpg",
+        "loop": null,
+        "type": "Picture"
+      },
       "adjacentRooms": ["Mushroom_Room"],
       "interactions": [
         {
@@ -248,8 +293,8 @@
           "location": {"x": -1.68, "y": 0.4, "z": 0}, //End of Navagation 
           "distance": 1,
           "originalRoom": "Breakfast_Nook",
-          "info": "Mushrooms have made an appearance before in Ovenland. Sometimes they're used as table tops, or seats. They may even be able to be used as steps ;)",
-          "url_or_path": "/POP-UP_IMAGES/MUSHROOM-ROOM-POPUP.jpg",
+          "text": "Mushrooms have made an appearance before in Ovenland. Sometimes they're used as table tops, or seats. They may even be able to be used as steps ;)",
+          "source": "/POP-UP_IMAGES/MUSHROOM-ROOM-POPUP.jpg",
           "id": 1
         },
         {
@@ -258,9 +303,12 @@
           "location": {"x": 3.765, "y": 0.13, "z": 0},
           "distance": 0.07,
           "originalRoom": "Breakfast_Nook",
-          "info": "Chef Gristlé has become another of Lilly’s good friends. His love of cooking and discovering new recipes was very helpful in improving the eating habits of the Frites of Ovenland. He still loves to give Lilly a good scare every now and then. After all, he IS a ghost!",
-          "url_or_path": "https://i.ibb.co/5s7PB6p/ChefGris.jpg",
-          "id": 2
+          "id": 2,
+          "display" : {
+            "type": "Image",
+            "source": "https://i.ibb.co/5s7PB6p/ChefGris.jpg",
+            "text": "Chef Gristlé has become another of Lilly’s good friends. His love of cooking and discovering new recipes was very helpful in improving the eating habits of the Frites of Ovenland. He still loves to give Lilly a good scare every now and then. After all, he IS a ghost!"
+          }
         },
         {
           "roomName": "Breakfast_Nook",
@@ -268,9 +316,12 @@
           "location": {"x": -4.965, "y": 0.749, "z": 0},
           "distance": 0.07,
           "originalRoom": "Breakfast_Nook",
-          "info": "The Queen of Ovenland has certainly softened since her first appearance! Lilly and her friends helped bring out her friendlier side.",
-          "url_or_path": "https://i.ibb.co/sb7W77d/BANQUET-ROOM-QUEEN-POPUP.jpg",
-          "id": 3
+          "id": 3,
+          "display" : {
+            "type": "Image",
+            "source": "https://i.ibb.co/sb7W77d/BANQUET-ROOM-QUEEN-POPUP.jpg",
+            "text": "The Queen of Ovenland has certainly softened since her first appearance! Lilly and her friends helped bring out her friendlier side."
+          }
         },
         {
           "roomName": "Breakfast_Nook",
@@ -278,9 +329,12 @@
           "location": {"x": -5.48, "y": 1.049, "z": -0.78},
           "distance": 0.07,
           "originalRoom": "Breakfast_Nook",
-          "info": "Crumb was the first and best friend that Lilly made when she came to Ovenland. They always find a way to keep in touch.",
-          "url_or_path": "https://i.ibb.co/64KBLn5/BANQUET-ROOM-CRUMB-POPUP.jpg",
-          "id": 4
+          "id": 4,
+          "display" : {
+            "type": "Image",
+            "source": "https://i.ibb.co/64KBLn5/BANQUET-ROOM-CRUMB-POPUP.jpg",
+            "text": "Crumb was the first and best friend that Lilly made when she came to Ovenland. They always find a way to keep in touch."
+          }
         },
         {
           "roomName": "Breakfast_Nook",
@@ -288,9 +342,12 @@
           "location": {"x": 2.975, "y": 1.11, "z": 0.03},
           "distance": 1,
           "originalRoom": "Breakfast_Nook",
-          "url_or_path": "https://i.ibb.co/bFFS7MC/ROYAL-BANQUET-ROOM-PRINTABLE.jpg",
-          "info": "This image is available for Download & Coloring on the home page!",
-          "id": 5
+          "id": 5,
+          "display" : {
+            "type": "Image",
+            "source": "https://i.ibb.co/bFFS7MC/ROYAL-BANQUET-ROOM-PRINTABLE.jpg",
+            "text": "This image is available for Download & Coloring on the home page!",
+          }
         }
       ]
     }
@@ -298,9 +355,9 @@
   "settings": {
     "audio": {
       "audioAnchor": "top-right",
-      "soundOnEnter": true,
-      "url_or_pathOn": "https://i.ibb.co/CsKnz4X/audioOn.png",
-      "url_or_pathOff": "https://i.ibb.co/6ywfZzS/audioOff.png"
+      "soundOnEnter": false,
+      "icon_sound_On": "https://i.ibb.co/CsKnz4X/audioOn.png",
+      "icon_sound_Off": "https://i.ibb.co/6ywfZzS/audioOff.png"
     },
     "flaggedInteractionsToHide": {
       "Mushroom_Room": ["Mushroom_Room-Picture-3", "Mushroom_Room-Print-4"],

@@ -37,14 +37,14 @@ export default class AudioPanel extends React.Component {
     }
   
     render() {
-      let url_or_pathOn = house.settings.audio.url_or_pathOn.includes('//') ? {uri: house.settings.audio.url_or_pathOn } : asset(house.settings.audio.url_or_pathOn);
-      let url_or_pathOff = house.settings.audio.url_or_pathOff.includes('//') ? {uri: house.settings.audio.url_or_pathOff } : asset(house.settings.audio.url_or_pathOff);
+      let icon_sound_On = house.settings.audio.icon_sound_On.includes('//') ? {uri: house.settings.audio.icon_sound_On } : asset(house.settings.audio.icon_sound_On);
+      let icon_sound_Off = house.settings.audio.icon_sound_Off.includes('//') ? {uri: house.settings.audio.icon_sound_Off } : asset(house.settings.audio.icon_sound_Off);
 
-      // console.log("URLLL", url_or_pathOn)
+      // console.log("URLLL", icon_sound_On)
       return(
         <View style={styles.audioPanel}>
           <VrButton onClick={() => this.state.playing ?  this.stopAmbientMusic() : this.playAmbientMusic()}>
-            <Image style={{height: 60, width: 60, marginLeft: 20, marginRight: 20}} source={this.state.playing ? url_or_pathOn : url_or_pathOff} />
+            <Image style={{height: 60, width: 60, marginLeft: 20, marginRight: 20}} source={this.state.playing ? icon_sound_On : icon_sound_Off} />
           </VrButton>
         </View>
       )

@@ -1,8 +1,6 @@
 
 import React from 'react';
-import { asset, Environment } from 'react-360';
-// import house from './data/tourData';
-import VideoModule from 'VideoModule';
+import {setBackground} from './helper.js'
 const house = require('./config.json')
 
 // import copy from './data/copy';
@@ -12,7 +10,8 @@ const State = {
   room: house.rooms.Entry.roomName,
   infoActive: false,
   infoType: '',
-  infoImage: '',
+  infoSource: '',
+  infoDisplayType: '',
   info: '',
   adjacentRooms: house.rooms.Entry.adjacentRooms,
 }
@@ -27,53 +26,27 @@ function updateComponents() {
 }
 
 export function changeRoom(roomSelection) {
-  let roomName = roomSelection;
-
-  State.room = roomName;
-  State.adjacentRooms = house.rooms[`${roomName}`].adjacentRooms;
-  let url_or_path = house.rooms[roomName].backgroundUrl.includes('//') ? house.rooms[roomName].backgroundUrl : asset(house.rooms[roomName].backgroundUrl);
-  if(house.rooms[roomSelection].backgroundType === 'Picture'){
-    Environment.setBackgroundImage(url_or_path, {
-      transition: 1000,
-    })
-  } else if(house.rooms[roomSelection].backgroundType === 'Video'){
-    videoPlayer = VideoModule.createPlayer('videoPlayer'); // Bike.mp4
-    this.videoPlayer.play({
-      source: { url: asset(house.rooms[roomName].backgroundUrl).uri},
-      muted: true
-    });
-
-    // this.bikingVideo.setLoop(true);
-    if(house.rooms[roomName].loop){
-      this.videoPlayer.addListener('onVideoStatusChanged', (e) => {
-        if (e.status === 'finished') {
-            // console.log('Event', e);
-            this.videoPlayer.resume()
-        }
-      });
-    }
-
-    Environment.setBackgroundVideo('videoPlayer', { rotateTransform: [{rotateY: '180deg'}] });
-  } else {
-    //background type error
-  }
-
-  // Environment.setBackgroundImage(asset(`/PANO_ART/${house[`${roomName}`].img}`));
-
+  State.room = roomSelection;
+  State.adjacentRooms = house.rooms[`${roomSelection}`].adjacentRooms;
+  // calls helper to set/change background
+  setBackground(roomSelection)
   State.infoActive = false;
-
   updateComponents();
 }
 
 
 export function openModal(room, interactionId) {
 	// console.log('We in that changeModal with ' + id + " & This == " + this);
-	// infoImage
+	// infoSource
   let matchingInfo = house.rooms[room].interactions.filter(interaction => interaction.id === interactionId)[0];
   State.infoType = matchingInfo.type;
-  State.infoImage = matchingInfo.url_or_path;
-  State.info = matchingInfo.info; 
+  State.infoSource = matchingInfo.display.source;
+  State.infoDisplayType = matchingInfo.display.type;
+  State.info = matchingInfo.display.text; 
   State.infoActive = true;
+
+  console.log("State: ", State)
+
   updateComponents();
   // React360.recenterInfoPanel();
   // _listener();
@@ -102,7 +75,8 @@ export function connect(Component) {
       infoActive: State.infoActive,
       info: State.info,
       infoType: State.infoType,
-		  infoImage: State.infoImage,
+      infoSource: State.infoSource,
+      infoDisplayType: State.infoDisplayType,
       adjacentRooms: State.adjacentRooms
     };
 
@@ -112,7 +86,8 @@ export function connect(Component) {
         infoActive: State.infoActive,
         info: State.info,
         infoType: State.infoType,
-        infoImage: State.infoImage,
+        infoSource: State.infoSource,
+        infoDisplayType: State.infoDisplayType,
         adjacentRooms: State.adjacentRooms
       });
     }
@@ -129,7 +104,8 @@ export function connect(Component) {
           infoActive={this.state.infoActive}
           info={this.state.info}
           infoType={this.state.infoType}
-          infoImage={this.state.infoImage}
+          infoSource={this.state.infoSource}
+          infoDisplayType={this.state.infoDisplayType}
           adjacentRooms={this.state.adjacentRooms}
         />
       )

@@ -6,16 +6,34 @@ import {
   StyleSheet,
   Text,
   View,
-  VrButton
+  Environment,
+  VrButton,
+  VideoPano,
+  Video,
+  MediaPlayerState,
 } from 'react-360';
-import { closeModal, getCurrentModalState } from '../store';
+import VideoModule from 'VideoModule';
+import PanelVideoElement from './PanelVideoElement';
 
+
+import { closeModal, getCurrentModalState } from '../store';
+const randomString = () => {
+  var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz_-";
+  var string_length = 6;
+  var randomstring = '';
+  for (var i=0; i<string_length; i++) {
+    var rnum = Math.floor(Math.random() * chars.length);
+    randomstring += chars.substring(rnum,rnum+1);
+  }
+  return randomstring
+}
 export default class InfoPanel extends React.Component {
     state = {
       active: getCurrentModalState(),
       id: null,
       hoverCloseBtn: false,
-      hoverPrintBtn: false
+      hoverPrintBtn: false,
+      playerState: new MediaPlayerState({autoPlay: true, loop: true, muted: true}), // init with muted, autoPlay
     }
     
     closePanel(){
@@ -33,14 +51,24 @@ export default class InfoPanel extends React.Component {
   
     render() {
       console.log(" -------------------------------------------------- InfoPanel active ", this.state.active + " == " + "getCurrentModalState() " + getCurrentModalState());
-      // let imgFetching = this.props.infoImage.includes('//') ? 'remote' : asset(this.props.infoImage);
-      let url_or_path = '';
-      if(this.props.infoImage.includes('//')){
-        url_or_path = {uri: this.props.infoImage }
+      // let imgFetching = this.props.infoSource.includes('//') ? 'remote' : asset(this.props.infoSource);
+      console.log("info panel: ", this.props)
+      let panerDisplaySource = '';
+      let remote = false;
+      if(this.props.infoSource.includes('//')){
+        panerDisplaySource = {uri: this.props.infoSource }
         remote = true;
       } else {
-        url_or_path = asset(this.props.infoImage);
+        panerDisplaySource = asset(this.props.infoSource);
         remote = false
+      }
+
+      let mediaDisplay = null;
+      if(this.props.infoDisplayType === "Image"){
+        mediaDisplay = <Image source={panerDisplaySource} style={{height: '70%', width: '100%'}} /> 
+      } else if(this.props.infoDisplayType === "Video"){
+        //component that will allow displaying video in the panel
+        mediaDisplay = <PanelVideoElement video={panerDisplaySource} />
       }
       
       return(
@@ -57,7 +85,7 @@ export default class InfoPanel extends React.Component {
                     style={this.state.hoverCloseBtn ?  styles.closeBtnHover : styles.closeBtn}
                   />
               </VrButton>
-            { <Image source={url_or_path} style={{height: '70%', width: '100%'}} /> }
+            {mediaDisplay}
             <View>
               <Text style={styles.text}>{ this.props.info } </Text>
               {(remote && this.props.infoType === "Print") && (
