@@ -54,7 +54,7 @@ function init(bundle, parent, options = {}) {
   
   if(house.settings.audio.audioAnchor === "bottom"){
     AudioPanel.setAngle(0, -Math.PI / 2)
-    console.log("calling")
+    // console.log("calling")
   }
 
   
@@ -84,7 +84,6 @@ function init(bundle, parent, options = {}) {
         250, 
         Surface.SurfaceShape.Flat
       );
-      console.log(buttonInteraction.id);
 
       if (buttonInteraction.location.z) {
         buttonsPanel.setAngle(
@@ -104,11 +103,19 @@ function init(bundle, parent, options = {}) {
         `${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`
       );
   })
-  //fetching images from google drive is not working for some reason, alternatively, we could use imgBB
-  let url_or_path = house.rooms["Entry"].backgroundUrl.includes('//') ? house.rooms["Entry"].backgroundUrl : r360.getAssetURL(house.rooms["Entry"].backgroundUrl);
-  r360.compositor.setBackground(url_or_path,{
-    transition: 1000
-  });
+
+  //ADDED CYLINDE SURFACE TO ALLOW VIDEO ON FIRST ROOM
+  const cylinderSurface = new Surface(
+    800, /* width */
+    450, /* height */
+    Surface.SurfaceShape.Cylinder /* shape */
+  );
+
+  r360.renderToSurface(
+    r360.createRoot('ConnectedEntryRoom', { /* initial props */ }),
+    cylinderSurface,
+    'main'
+  );
 
 }
 
@@ -200,6 +207,17 @@ class CustomLinkingModule extends Module {
     })
     }, 1700);
   }
+
+  clearVideoPlayer(handler){
+    let players = r360.compositor._videoPlayers._players;
+    for(player in players){
+      if(player !== 'default'){
+        console.log(player, " destroyed!")
+        r360.compositor._videoPlayers.destroyPlayer(player)
+      }
+    }
+  }
+
   open(url) {
     const ua = navigator.userAgent;
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
