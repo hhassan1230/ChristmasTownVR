@@ -1,74 +1,77 @@
-// https://codepen.io/hhassan1230/pen/oNXMRXx
+const {
+  gsap: { timeline },
+} = window
 
-const items = document.querySelectorAll('.slider-item');
-const itemCount = items.length;
-const nextItem = document.querySelector('.next');
-const previousItem = document.querySelector('.previous');
-const navItem = document.querySelector('a.toggle-nav');
-let count = 0;
+const URL = 'https://pokeapi.co/api/v2/pokemon/'
+const POKEMON_COUNT = 151
+const OPEN_SPEED = 0.25
+const HEADER = document.querySelector('.pokedex__pokemon-name')
+const IMG = document.querySelector('.pokedex__image')
+const OPEN_BUTTON = document.querySelector('.open')
+const CLOSE_BUTTON = document.querySelector('.close')
+const GRAB_BUTTON = document.querySelector('.grab')
 
-function showNextItem() {
-  items[count].classList.remove('active');
+const getPokemon = async () => {
+  const ID = Math.floor(Math.random() * POKEMON_COUNT) + 1
+  const POKEMON_DATA = await (await fetch(`${URL}${ID}`)).json()
+  return POKEMON_DATA
+}
 
-  if(count < itemCount - 1) {
-    count++;
-  } else {
-    count = 0;
+const UPDATE_SOUND = new Audio(
+  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/605876/pokedex.mp3'
+)
+const OPEN_SOUND = new Audio(
+  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/605876/open.mp3'
+)
+const PRESS_SOUND = new Audio(
+  'https://freesound.org/data/previews/467/467552_9892063-lq.mp3'
+)
+let flashTL
+const updatePokemon = async () => {
+  const {
+    name,
+    sprites: { front_default: src, front_shiny: src_shiny },
+  } = await getPokemon()
+  HEADER.innerHTML = name
+  IMG.removeAttribute('href')
+  IMG.setAttribute('href', Math.random() > 0.5 ? src_shiny : src)
+  UPDATE_SOUND.play()
+  const repeat = Math.floor(Math.random() * 5) + 2
+  if (flashTL) {
+    flashTL.progress(0)
+    flashTL.kill()
   }
-
-  items[count].classList.add('active');
-  console.log(count);
+  flashTL = new timeline().to('.pokedex__flash', {
+    duration: OPEN_SPEED / 2,
+    repeat: repeat % 2 !== 1 ? repeat - 1 : repeat,
+    opacity: 1,
+    yoyo: true,
+    ease: 'steps(1)',
+  })
 }
 
-function showPreviousItem() {
-  items[count].classList.remove('active');
+GRAB_BUTTON.addEventListener('click', updatePokemon)
+GRAB_BUTTON.addEventListener('pointerdown', () => PRESS_SOUND.play())
+const OPEN_TL = new timeline({
+  paused: true,
+  onStart: () => {
+    OPEN_SOUND.play()
+  },
+  onComplete: updatePokemon,
+})
+  .to('.pokedex__container', { x: '-=43%', duration: OPEN_SPEED }, 0)
+  .to('.pokedex__flip', { rotateY: '+=180', duration: OPEN_SPEED }, 0)
 
-  if(count > 0) {
-    count--;
-  } else {
-    count = itemCount - 1;
-  }
-
-  items[count].classList.add('active');
-  // Check if working...
-  console.log(count);
+const openPokedex = () => {
+  OPEN_TL.play()
 }
+OPEN_BUTTON.addEventListener('click', openPokedex)
+CLOSE_BUTTON.addEventListener('click', () => {
+  OPEN_SOUND.play()
+  OPEN_TL.reverse()
+})
 
-function toggleNavigation(){
-  this.nextElementSibling.classList.toggle('active');
-}
 
-function keyPress(e) {
-  e = e || window.event;
-  
-  if (e.keyCode == '37') {
-    showPreviousItem();
-  } else if (e.keyCode == '39') {
-    showNextItem();
-  }
-}
-
-nextItem.addEventListener('click', showNextItem);
-previousItem.addEventListener('click', showPreviousItem);
-document.addEventListener('keydown', keyPress);
-navItem.addEventListener('click', toggleNavigation);
-
-// var spector = new SPECTOR.Spector();
-// spector.displayUI();
-// <a href="#" class="button-grow" onClick="enterApp();"><img src=./static_assets/Splash/PLAY.png> </a> <!-- <button type="button" class="btn btn-dark" onClick="enterApp();">Enter</button>
-
-// Initialize the React 360 application
-// function enterApp() {
-//     React360.init(
-//         'index.bundle?platform=vr&dev=true',
-//         document.getElementById('initialize'), {
-//             assetRoot: 'static_assets/',
-//         }
-//     );
-
-//     const elem = document.getElementById('placeHolder');
-//     elem.parentNode.removeChild(elem);
-// }
 function enterApp() {
   const elem = document.getElementById('initialize');
     while(elem.firstChild){

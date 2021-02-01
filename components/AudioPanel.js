@@ -22,8 +22,9 @@ export default class AudioPanel extends React.Component {
     }
 
     playAmbientMusic() {
+      // var 
       AudioModule.playEnvironmental({
-        source: asset('/MUSIC/sugarPlumMixed_1_lower.ogg'),
+        source: asset(house["settings"].audio.SoundURL),
         volume: 0.1,
       });
       if(!this.state.playing){
