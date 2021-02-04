@@ -12,7 +12,7 @@
      <meta property="og:description" content="Welcome to Christmas in Ovenland! We hope you have fun exploring this small part of Ovenland by the amazing Micheline Hess. There's lots of neat stuff to find in this VR adventure. NOTE - Downloadable coloring pages will open in a new tab to get back to Ovenland; close it, and carry on! Happy Holidays from Micheline Hess & Made in Brooklyn Games!">
      <meta property="og:site_name" content="Christmas in Ovenland">
     <title>Christmas in Ovenland</title>
-    <link rel="stylesheet" href="./styles/output.css">
+    <link rel="stylesheet" href="./styles/output-new.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
   </head>
@@ -21,218 +21,133 @@
     <!-- Attachment point for your app -->
     <div id="initialize">
       <div id="placeHolder">
-        <nav class="flex-nav">
-          <div class="container">
-            <div class="grid">
-              <div class="column-xs-9 column-md-8">
-                <p id="logo">Christmas in Ovenland<span id="highlight">.</span></p>
-              </div>
-              <div class="column-xs-3 column-md-4">
-                <a href="#" class="toggle-nav">Menu <i class="ion-navicon-round"></i></a>
-                <ul>
-                  <li><a href="//www.michmasharts.com/">About Artist</a></li>
-                  <li><a href="#" onClick="enterApp();">MiBKG</a></li>
-                  <li><a href="#" onClick="enterApp();">Start Your Trip</a></li>
-                </ul>
-              </div>
-            </div>
+        <div class="nav-container">
+          <div>
+            <p id="logo">Christmas in Ovenland<span id="highlight">.</span></p>
           </div>
-        </nav>
+          <div>
+            <!-- <a href="#" class="toggle-nav">Menu <i class="ion-navicon-round"></i></a> -->
+            <ul class="nav-items">
+              <li class="nav-item"><a href="//www.michmasharts.com/">About Artist</a></li>
+              <li class="nav-item"><a href="#" onClick="enterApp();">MiBKG</a></li>
+              <li class="nav-item"><a href="#" onClick="enterApp();">Start Your Trip</a></li>
+            </ul>
+          </div>
+        </div>
         <main class="intro-section">
-          <div class="container">
-            <div class="grid">
-              <div class="column-xs-12">
-                <ul class="slider">
-                  <li class="slider-item active">
-                    <div class="grid vertical">
-                      <div class="column-xs-12 column-md-2 hide-mobile">
-                        <div class="intro">
-                          <a href="#" onClick="enterApp();">
-                            <h1 class="title"><span class="underline">Explore Christmas in Ovenland</span></h1>
-                          </a>
-                        </div>
-                      </div>
-                      <div class="column-xs-12 column-md-10">
-                        <a href="#" onClick="enterApp();">
-                          <div class="image-holder">
-                            <img src="//hhassan1230.github.io/PhotoChill/TITLECARD_BG_PaddingV3.jpg">
-                          </div>
-                        </a>
-                        <div class="grid">
-                          <div class="column-xs-12 column-md-9">
-                            <div class="intro show-mobile">
-                              <a href="#" onClick="enterApp();">
-                                <h1 class="title"><span class="underline">Explore Christmas in Ovenland</span></h1>
-                              </a>
-                            </div>
-                            <p class="description">Welcome! I hope you have fun exploring this small part of <a href="#" onClick="enterApp();">Ovenland.</a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="slider-item">
-                    <div class="grid vertical">
-                      <div class="column-xs-12 column-md-2 hide-mobile">
-                        <div class="intro">
-                          <a href="#" onClick="enterApp();">
-                            <h1 class="title"><span class="underline">How to Play</span></h1>
-                          </a>
-                        </div>
-                      </div>
-                      <div class="column-xs-12 column-md-10">
-                        <a href="#" onClick="enterApp();">
-                          <div class="image-holder">
-                            <img src="//hhassan1230.github.io/PhotoChill/howtoplayPaddingV6.png">
-                          </div>
-                        </a>
-                        <div class="grid">
-                          <div class="column-xs-12 column-md-9">
-                            <div class="intro show-mobile">
-                              <a href="#" onClick="enterApp();">
-                                <h1 class="title"><span class="underline">How to Play</span></h1>
-                              </a>
-                            </div>
-                            <p class="description"></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="slider-item">
-                    <div class="grid vertical">
-                      <div class="column-xs-12 column-md-2 hide-mobile">
-                        <div class="intro">
-                          <a href="#">
-                             <h1 class="title"><span class="underline">Download & Color Exclusive Printables</span></h1>
-                          </a>
-                        </div>
-                      </div>
-                      <div class="column-xs-12 column-md-10">
-                        <div class="image-holder">
-                          <img src="//hhassan1230.github.io/PhotoChill/TITLECARD_BG_Printables_V4.jpg">
-                        </div>
-                        <div class="grid">
-                          <div class="column-xs-12 column-md-9">
-                            <div class="intro show-mobile">
-                              <a href="#">
-                                <h1 class="title"><span class="underline">Download & Color Exclusive Printables</span></h1>
-                              </a>
-                            </div>
-                            <p class="description"></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="slider-item">
-                    <div class="grid vertical">
-                      <div class="column-xs-12 column-md-2 hide-mobile">
-                        <div class="intro">
-                          <a href="#">
-                            <h1 class="title"><span class="underline"></span></h1>
-                          </a>
-                        </div>
-                      </div>
-                      <div class="column-xs-12 column-md-10">
-                        <a href="#" onClick="enterApp();">
-                          <div class="image-holder">
-                            <img src="//hhassan1230.github.io/PhotoChill/From-xmas_1_V2.jpg">
-                          </div>
-                        </a>
-                        <div class="grid">
-                          <div class="column-xs-12 column-md-9">
-                            <div class="intro show-mobile">
-                              <a href="#">
-                                <h1 class="title"><span class="underline"></span></h1>
-                              </a>
-                            </div>
-                            <p class="description">Enjoy the world of Ovenland by <a href="//www.michmasharts.com/">Micheline Hess</a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              <div class="grid">
-                <div class="column-xs-12">
-                  <div class="controls">
-                      <button class="previous">
-                        <!-- <i class="ion-ios-arrow-thin-left"></i> -->
-                        <span class="iconify" data-icon="ion-ios-arrow-thin-left" data-inline="false"></span>
-                      </button>
-                      <button class="next">
-                        <!-- <i class="ion-ios-arrow-thin-right"></i> -->
-                        <span class="iconify" data-icon="ion-ios-arrow-thin-right" data-inline="false"></span>
-                      </button>
-                    </div>
-                  </div>
-              </div>
-            </div>
+          <div class="img-container">
+            <!-- <img src="//hhassan1230.github.io/PhotoChill/TITLECARD_BG_PaddingV3.jpg"> -->
           </div>
         </main>
       </div>
-  </div>
+    </div>
     <!-- <script src="./client.bundle.js"></script> -->
     <script src="./client.bundle?platform=vr"></script>
 
     <script>
-      const items = document.querySelectorAll('.slider-item');
-      const itemCount = items.length;
+      let images = [
+        {
+          title: `<h1 class="title"><span class="underline">Explore Christmas in Ovenland</span></h1>`,
+          source: 'https://hhassan1230.github.io/PhotoChill/TITLECARD_BG_PaddingV3.jpg',
+          description: '<p class="description">Welcome! I hope you have fun exploring this small part of <a href="#" class="highlight-text" onClick="enterApp();">Ovenland.</a></p>',
+          index: 0
+        },
+        {
+          title: `<h1 class="title"><span class="underline">How to Play</span></h1>`,
+          source: 'https://hhassan1230.github.io/PhotoChill/howtoplayPaddingV6.png',
+          description: '',
+          index: 1
+        },
+        {
+          title: `<h1 class="title"><span class="underline">Download &amp; Color Exclusive Printables</span></h1>`,
+          source: 'https://hhassan1230.github.io/PhotoChill/TITLECARD_BG_Printables_V4.jpg',
+          description: '',
+          index: 2
+        },
+        {
+          title: ``,
+          source: 'https://hhassan1230.github.io/PhotoChill/From-xmas_1_V2.jpg',
+          description: '<p class="description">Enjoy the world of Ovenland by <a class="highlight-text" href="//www.michmasharts.com/">Micheline Hess</a></p>',
+          index: 3
+        }
+      ]
+
+      //initialize with first image properties
+      var p = document.createElement("p");
+      var h1 = document.createElement("h1");
+      var img = document.createElement("img");
+      var slider = document.createElement("div")
+      p.innerHTML= images[0].description;
+      h1.innerHTML= images[0].title;
+      var div = document.getElementsByClassName("img-container")[0];
+      div.appendChild(h1);
+      img.src = images[0].source;
+      img.setAttribute('onClick', 'enterApp()');
+      div.appendChild(img)
+      div.appendChild(p);
+      slider.innerHTML = `<div class="slider">
+            <div class="controls">
+              <button class="previous">
+                <span class="iconify" data-icon="ion-ios-arrow-thin-left" data-inline="false"></span>
+              </button>
+              <button class="next">
+                <span class="iconify" data-icon="ion-ios-arrow-thin-right" data-inline="false"></span>
+              </button>
+            </div>
+          </div>`
+      div.appendChild(slider)
+
       const nextItem = document.querySelector('.next');
       const previousItem = document.querySelector('.previous');
-      const navItem = document.querySelector('a.toggle-nav');
-      let count = 0;
-
-      function showNextItem() {
-        items[count].classList.remove('active');
-
-        if(count < itemCount - 1) {
-          count++;
-        } else {
-          count = 0;
-        }
-
-        items[count].classList.add('active');
-        console.log(count);
-      }
-
-      function showPreviousItem() {
-        items[count].classList.remove('active');
-
-        if(count > 0) {
-          count--;
-        } else {
-          count = itemCount - 1;
-        }
-
-        items[count].classList.add('active');
-        // Check if working...
-        console.log(count);
-      }
-
-      function toggleNavigation(){
-        this.nextElementSibling.classList.toggle('active');
-      }
-
-      function keyPress(e) {
-        e = e || window.event;
-        
-        if (e.keyCode == '37') {
-          showPreviousItem();
-        } else if (e.keyCode == '39') {
-          showNextItem();
-        }
-      }
-
       nextItem.addEventListener('click', showNextItem);
       previousItem.addEventListener('click', showPreviousItem);
-      document.addEventListener('keydown', keyPress);
-      navItem.addEventListener('click', toggleNavigation);
+      // img.addEventListener('click', enterApp);
 
 
-      // var spector = new SPECTOR.Spector();
-      // spector.displayUI();
+      //show previous item
+      function showPreviousItem() {
+        let title = document.querySelector(".title")
+        let img = document.querySelector("img");
+        let description = document.querySelector(".description")
+        let item = images.filter(image => image.source === img.src)[0]
+        if(item.index - 1 < 0) {
+          title.innerHTML = images[images.length - 1].title
+          img.src = images[images.length - 1].source
+          description.innerHTML = images[images.length - 1].description;
+        } else {
+          title.innerHTML = images[item.index - 1].title
+          img.src = images[item.index - 1].source
+          description.innerHTML = images[item.index - 1].description
+        }
+
+        let newNode = img.cloneNode(true);
+        img.parentNode.replaceChild(newNode, img);
+        newNode.classList.remove('img-next');
+        newNode.classList.add('img-previus');
+        document.querySelector("button").classList.remove('active');
+      }
+
+      //show next item
+      function showNextItem() {
+        let title = document.querySelector(".title")
+        let img = document.querySelector("img");
+        let description = document.querySelector(".description")
+        let item = images.filter(image => image.source === img.src)[0]
+        if(item.index + 1 > images.length - 1) {
+          title.innerHTML = images[0].title
+          img.src = images[0].source
+          description.innerHTML = images[0].description
+        } else {
+          title.innerHTML = images[item.index + 1].title
+          img.src = images[item.index + 1].source
+          description.innerHTML = images[item.index + 1].description
+        }
+
+        let newNode = img.cloneNode(true);
+        img.parentNode.replaceChild(newNode, img);
+        newNode.classList.remove('img-previus');
+        newNode.classList.add('img-next');      
+      }
 
 
     // Initialize the React 360 application
@@ -250,10 +165,10 @@
                 assetRoot: 'static_assets/',
             }
         );
-        document.querySelectorAll("*").forEach(el => {
-          el.style.margin = "0px";
-          el.style.boxSizing = "inherit"
-        });
+        // document.querySelectorAll("*").forEach(el => {
+        //   el.style.margin = "0px";
+        //   el.style.boxSizing = "inherit"
+        // });
     }
     // DEBUGGING
     // enterApp();

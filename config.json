@@ -3,8 +3,8 @@
     "Entry": {
         "roomName": "Entry",
         "background": {
-          "source": "/PANO_ART/video/4.Sky_Turtle_final_video_orcas_contrast_injected.mp4",
-          "loop": null,
+          "source": "/PANO_ART/video/2_vive_dragon_focus_360_video_injected.mp4",
+          "loop": true,
           "type": "Video"
         },
         "adjacentRooms": ["MainHall"],

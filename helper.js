@@ -7,19 +7,22 @@ export const setBackground = (roomName) => {
     //all video players must have a unique name, so this will clear previous video players
     NativeModules.CustomLinkingModule.clearVideoPlayer();
 
-    //determines if the background source is an url or path
-    let url_or_path = house.rooms[roomName].background.source.includes('//') ? house.rooms[roomName].background.source : asset(house.rooms[roomName].background.source);
     if(house.rooms[roomName].background.type.toLowerCase() === 'picture'){
-      Environment.setBackgroundImage(url_or_path, {
+      //determines if the background source is an url or path for picture
+      let source = house.rooms[roomName].background.source.includes('//') ? house.rooms[roomName].background.source : asset(house.rooms[roomName].background.source);
+      Environment.setBackgroundImage(source, {
         transition: 1000,
       })
     } else if(house.rooms[roomName].background.type.toLowerCase() === 'video'){ //need to implement video comming from server
+        //determines if the background source is an url or path for video
+        let source = house.rooms[roomName].background.source.includes('//') ? house.rooms[roomName].background.source : asset(house.rooms[roomName].background.source).uri;
+    
         //gives random names to video player
         let videoName = `video-${randomString()}`
         videoBackground = VideoModule.createPlayer(videoName); // Bike.mp4
 
         this.videoBackground.play({
-            source: { url: url_or_path.uri},
+            source: { url: source},
             muted: true
         });
     

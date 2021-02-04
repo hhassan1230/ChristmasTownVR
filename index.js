@@ -24,22 +24,10 @@ class EntryRoom extends React.Component {
     setBackground('Entry')
   }
 
-  componentWillUnmount() {
-    console.log('should destroy video')
-    // this.videoPlayer.destroyPlayer();
-  }
-
   render() {
 
     return(
-      <View>
-        {/* <View>
-          {selection}
-        </View>
-        <View style={styles.section}>
-          {sceneButtons}
-        </View> */}
-      </View>
+      <View />
     )
   }
 }
