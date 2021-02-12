@@ -30,7 +30,7 @@ It provides a tour of rooms navigations, sound, and user interactivity with VR b
   - The expience has many ways of interaction such as clicking on buttons to open a panel, change rooms, or modify settings.
 * Sound support
 * Video/images support
-* VR Experience - ability to change to VR using the headset
+* VR Experience - ability to change to Virtual Reality using the VR headset
 * Story Telling - Understand the story of each room
 * Back and Forth Experience - Go as far as you want in the experience and come back to point 0 at any time.
 * Framing - Some components are runing at all frames of the experience such as the sound button.
@@ -43,7 +43,7 @@ It provides a tour of rooms navigations, sound, and user interactivity with VR b
 ## How To Use
 - Click on START YOUR TRIP
   <h1>
-    <a href="https://hessvacio.com/pages/ChristmasInOvenland/index.html"><img src="https://i.ibb.co/d684hpx/Capture.png" alt="ChristmasTownVR" width="400"></a>
+    <a href="https://hessvacio.com/pages/ChristmasInOvenland/index.html"><img src="https://i.ibb.co/gdCGF9n/start-trip.png" alt="ChristmasTownVR" width="400"></a>
   </h1>
 
 - Click on the arrows to change room
@@ -65,7 +65,7 @@ It provides a tour of rooms navigations, sound, and user interactivity with VR b
 
 <h1 align="center">
   <br>
-  <a href="https://hessvacio.com/pages/ChristmasInOvenland/index.html"><img src="https://i.postimg.cc/zB7BCN6k/e5588a48-1ff2-4d84-8fad-0c4fef746f54.gif" alt="appGif" width="850"></a>
+  <a href="https://hessvacio.com/pages/ChristmasInOvenland/index.html"><img src="https://i.ibb.co/KhmfznV/ezgif-com-gif-maker.gif" alt="appGif" width="850"></a>
 </h1>
 
 ## Tech Stack
