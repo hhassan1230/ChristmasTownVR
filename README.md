@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://hessvacio.com/pages/ChristmasInOvenland/index.html"><img src="https://hhassan1230.github.io/PhotoChill/miniTitleCard.jpg" alt="ChristmasTownVR" width="400"></a>
+  <a href="https://hessvacio.com/pages/ChristmasInOvenland/index.html"><img src="https://hhassan1230.github.io/PhotoChill/miniTitleCard.jpg" alt="ChristmasTownVR"></a>
   <br>
   ChristmasTownVR
   <br>
