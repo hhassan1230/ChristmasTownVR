@@ -25,18 +25,14 @@ class Button extends React.Component {
         if (this.props.type === 'Nav') {
           changeRoom(roomSelection.room);
           NativeModules.CustomLinkingModule.updateInteractions(roomSelection.room)
-          console.log("going to", roomSelection.room)
+          // console.log("going to", roomSelection.room)
         } else if (this.props.type === 'Print' || this.props.type === 'Picture') {
-            // console.log('-------------------------------- In clickHandler ' + JSON.stingify(this));
-            // console.log("modal State onclickHandler: ", getCurrentModalState() )
-            // console.log(roomSelection.room, this.props)
             openModal(roomSelection.room , roomSelection.id);
             NativeModules.CustomLinkingModule.recenterModalAndHideBtnSurface()
             NativeModules.CustomLinkingModule.hideFlaggedSurfaces(roomSelection.room)
             // console.log("modal State: ", getCurrentModalState())
         } else {
             // Sounds Maybe???
-  
         }
   
     }

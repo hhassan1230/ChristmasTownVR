@@ -40,7 +40,6 @@ export default class AudioPanel extends React.Component {
       let icon_sound_On = house.settings.audio.icon_sound_On.includes('//') ? {uri: house.settings.audio.icon_sound_On } : asset(house.settings.audio.icon_sound_On);
       let icon_sound_Off = house.settings.audio.icon_sound_Off.includes('//') ? {uri: house.settings.audio.icon_sound_Off } : asset(house.settings.audio.icon_sound_Off);
 
-      // console.log("URLLL", icon_sound_On)
       return(
         <View style={styles.audioPanel}>
           <VrButton onClick={() => this.state.playing ?  this.stopAmbientMusic() : this.playAmbientMusic()}>
