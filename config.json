@@ -3,9 +3,9 @@
     "Entry": {
         "roomName": "Entry",
         "background": {
-          "source": "/PANO_ART/video/2_vive_dragon_focus_360_video_injected.mp4",
-          "loop": true,
-          "type": "Video"
+          "source": "https://i.ibb.co/g3qNpcf/ovenland1.jpg",
+          "loop": null,
+          "type": "Picture"
         },
         "adjacentRooms": ["MainHall"],
         "interactions": [
@@ -51,8 +51,8 @@
                 "originalRoom": "Entry",
                 "id": 4,
                 "display" : {
-                  "type": "Video",
-                  "source": "/PANO_ART/video/askappsyonkers.mp4",
+                  "type": "Image",
+                  "source": "https://i.ibb.co/4gRrS0S/MUSHROOM-ROOM-PRINTABLE.jpg",
                   "text": "This image is available for Download & Coloring on the home page!"
                 }
               }
@@ -61,9 +61,9 @@
     "MainHall":  {
         "roomName": "MainHall",
         "background": {
-          "source": "/PANO_ART/video/1_VIVE_FOCUS_ELEPHANT_DREAMSCAPE_injected.mp4",
-          "loop": true,
-          "type": "Video"
+          "source": "https://i.ibb.co/1nm2PJJ/ovenland2.jpg",
+          "loop": null,
+          "type": "Picture"
         },
         "adjacentRooms": ["Kitchen", "Sleeping_Room", "Mushroom_Room", "Entry"],
         "interactions": [
@@ -355,7 +355,7 @@
   "settings": {
     "audio": {
       "audioAnchor": "top-right",
-      "soundOnEnter": false,
+      "soundOnEnter": true,
       "icon_sound_On": "https://i.ibb.co/CsKnz4X/audioOn.png",
       "icon_sound_Off": "https://i.ibb.co/6ywfZzS/audioOff.png"
     },

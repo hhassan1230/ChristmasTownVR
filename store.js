@@ -36,7 +36,6 @@ export function changeRoom(roomSelection) {
 
 
 export function openModal(room, interactionId) {
-	// console.log('We in that changeModal with ' + id + " & This == " + this);
 	// infoSource
   let matchingInfo = house.rooms[room].interactions.filter(interaction => interaction.id === interactionId)[0];
   State.infoType = matchingInfo.type;
@@ -45,15 +44,12 @@ export function openModal(room, interactionId) {
   State.info = matchingInfo.display.text; 
   State.infoActive = true;
 
-  console.log("State: ", State)
-
   updateComponents();
   // React360.recenterInfoPanel();
   // _listener();
 }
 
 export function closeModal() {
-	console.log('Closing that modal');
 	// Display False
 	State.infoActive = false;
 	updateComponents();

@@ -5,7 +5,6 @@ import {ReactInstance, Surface, Module} from 'react-360-web';
 import { Math as GLMath } from "webgl-ui";
 // import interactions from './data/interactions';
 const house = require('./config.json')
-// console.log(ROOMS["Entry"])
 function init(bundle, parent, options = {}) {
   AudioPanel = new Surface(100, 100, Surface.SurfaceShape.Flat );
   const cameraDirection = [0, 0, -1];
@@ -54,10 +53,7 @@ function init(bundle, parent, options = {}) {
   
   if(house.settings.audio.audioAnchor === "bottom"){
     AudioPanel.setAngle(0, -Math.PI / 2)
-    // console.log("calling")
   }
-
-  
 
   r360.renderToSurface(
     r360.createRoot('ConnectedAudioPanel', {  }),
@@ -123,12 +119,14 @@ class CustomLinkingModule extends Module {
   constructor() {
     super('CustomLinkingModule');
   }
+  //recentel modal to front of screent
   recenterModalAndHideBtnSurface(){
     this.closeModalAndShowBtnSurface()
     const cameraQuat = r360.getCameraQuaternion()
     infoPanel.recenter(cameraQuat, 'all')
     this.hideSurfacesInPanelArea()
   }
+  // hide surfaces overlapping the info panel area when open
   hideSurfacesInPanelArea(){
     for(const surfaceName in r360.compositor._surfaceManager._surfaces){
       if(surfaceName !== 'infoPanel' && surfaceName !== 'default'){
@@ -145,6 +143,7 @@ class CustomLinkingModule extends Module {
       }
     }
   }
+  // close and show info panel
   closeModalAndShowBtnSurface(){
     for(const surfaceName in r360.compositor._surfaceManager._surfaces){
       // console.log('NAME: ',surfaceName)
@@ -152,17 +151,19 @@ class CustomLinkingModule extends Module {
       r360.compositor._surfaceManager.showSurface(surface)
     }
   }
+  // hide flagged surfaces
   hideFlaggedSurfaces(room){
     if(house.settings.flaggedInteractionsToHide && house.settings.flaggedInteractionsToHide[room]){
-      console.log("Hidingg flagged Interactions")
+      // console.log("Hidingg flagged Interactions")
       house.settings.flaggedInteractionsToHide[room].forEach(surfaceName => {
         let surface = r360.compositor._surfaceManager.getSurface(surfaceName)
         r360.compositor._surfaceManager.hideSurface(surface)
       })
     }
   }
+  // unregister surfaces
   unregisterSurfaces(){
-    console.log("waiting")
+    // console.log("waiting")
     for(const surfaceName in r360.compositor._surfaceManager._surfaces){
       // console.log("unregisterSurface", surfaceName !== 'infoPanel', surfaceName)
       if(surfaceName !== 'infoPanel' && surfaceName !== 'default'){
@@ -173,6 +174,7 @@ class CustomLinkingModule extends Module {
     }
     return;
   }
+  //updates interactions when changing rooms
   updateInteractions(room){
     this.unregisterSurfaces()
     setTimeout(() => {
@@ -184,7 +186,7 @@ class CustomLinkingModule extends Module {
         250, 
         Surface.SurfaceShape.Flat
       );
-      console.log(buttonInteraction.id);
+      // console.log(buttonInteraction.id);
 
       if (buttonInteraction.location.z) {
       buttonsPanel.setAngle(
@@ -203,21 +205,21 @@ class CustomLinkingModule extends Module {
           buttonsPanel,
           `${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`
         );
-        console.log(`${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`)
+        // console.log(`${buttonInteraction.roomName}-${buttonInteraction.type}-${buttonInteraction.id}`)
     })
     }, 1700);
   }
-
+  // clears the video player component
   clearVideoPlayer(handler){
     let players = r360.compositor._videoPlayers._players;
     for(player in players){
       if(player !== 'default'){
-        console.log(player, " destroyed!")
+        // console.log(player, " destroyed!")
         r360.compositor._videoPlayers.destroyPlayer(player)
       }
     }
   }
-
+  // open printables to a different tab
   open(url) {
     const ua = navigator.userAgent;
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {

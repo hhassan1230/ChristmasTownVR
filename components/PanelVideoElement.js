@@ -24,7 +24,7 @@ export default class PanelVideoElement extends React.Component {
 
   render() {
     const { playing, video, videoStyles, videoControllerStyles } = this.props;
-    console.log(video)
+    // console.log(video)
     return (
         <View
           style={{

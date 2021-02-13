@@ -18,7 +18,7 @@ It provides a tour of rooms navigations, sound, and user interactivity with VR b
   <a href="#how-to-use">How To Use</a> •
   <a href="#tech-stack">Tech Stack</a> •
   <a href="#related">Related</a> •
-    <a href="#credit">Credit</a>
+  <a href="#credit">Credit</a>
 </p>
 
 ## Key Features
@@ -72,6 +72,8 @@ It provides a tour of rooms navigations, sound, and user interactivity with VR b
 - ReactJS - A deep understanding of the ReactJS framework was used in this applications. The mix of ReactJS and JavaScript allowed much of the calculations, data Structure usage, modern syntax.
 - JavaScript - Many of the funtionalities needed a deep understanding of JavaScript. 
 Experience was provided with React 360. 
+
+The **[ChristmasTownVR](https://hessvacio.com/pages/ChristmasInOvenland/index.html)** app is based on a config.json file, which has all the properties needed to populate the experience. The app reads the json file, takes the attributes and values, inspect them and then loads the experience. This json file was created with the pupose of making the application simple and easy to undestand. However, the config.json file is a long file that took a lot of time to write and a lot of debugging.
 
 MadeInBrooklynGames was dedicated to developing this experience with literally no experience in React 360, neither the time to sit and code. This experience was really limited
 React 360 is a framework with limited resources. Many functionalities were left out as there are not a lot of people that know React 360 and there was literally no one to answer our questions. The main challenges came during platform compatibility as the browser on the desktop is not the same as on a mobile device. There was a lot of 
