@@ -1,34 +1,20 @@
 import React from 'react';
 import {
-  asset,
-  Image,
-  NativeModules,
   AppRegistry,
-  Environment,
-  StyleSheet,
-  Text,
   View,
-  VrButton
 } from 'react-360';
-import VideoModule from 'VideoModule';
 
-import { connect, changeRoom, openModal, closeModal, getCurrentRoom, getCurrentModalState } from './store';
+import { connect } from './store';
 import ButtonPanel from './components/ButtonPanel'
 import InfoPanel from './components/InfoPanel'
 import AudioPanel from './components/AudioPanel'
 import {setBackground} from './helper.js'
 
 class EntryRoom extends React.Component {
-
-  componentDidMount() {
-    setBackground('Entry')
-  }
+  componentDidMount() { setBackground('Entry') }
 
   render() {
-
-    return(
-      <View />
-    )
+    return( <View /> )
   }
 }
 
@@ -38,11 +24,6 @@ const ConnectedButtonPanel = connect(ButtonPanel);
 const ConnectedInfoPanel = connect(InfoPanel);
 const ConnectedAudioPanel = connect(AudioPanel);
 
-// const styles = StyleSheet.create({
-//   audioPanel: {
-//     flexDirection: 'row'
-//   },
-// });
 
 AppRegistry.registerComponent('ConnectedEntryRoom', () => ConnectedEntryRoom);
 AppRegistry.registerComponent('ConnectedButtonPanel', () => ConnectedButtonPanel);
