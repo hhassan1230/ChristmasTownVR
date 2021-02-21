@@ -354,8 +354,8 @@
   },
   "settings": {
     "audio": {
-      "audioAnchor": "top-right",
-      "soundOnEnter": false,
+      "audioAnchor": "bottom",
+      "soundOnEnter": true,
       "icon_sound_On": "https://i.ibb.co/CsKnz4X/audioOn.png",
       "icon_sound_Off": "https://i.ibb.co/6ywfZzS/audioOff.png"
     },
