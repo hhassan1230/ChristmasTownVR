@@ -19,7 +19,7 @@ export const setBackground = (roomName) => {
         let source = house.rooms[roomName].background.source.includes('//') ? house.rooms[roomName].background.source : asset(house.rooms[roomName].background.source).uri;
         //gives random names to video player
         let videoName = `video-${randomString()}`
-        videoBackground = VideoModule.createPlayer(videoName); // Bike.mp4
+        let videoBackground = VideoModule.createPlayer(videoName); // Bike.mp4
 
         videoBackground.play({
             source: { url: source},
