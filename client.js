@@ -5,6 +5,13 @@ import {ReactInstance, Surface, Module} from 'react-360-web';
 import { Math as GLMath } from "webgl-ui";
 // import interactions from './data/interactions';
 const house = require('./config.json')
+
+// Module-level variables that need to be shared across init and CustomLinkingModule
+let r360;
+let AudioPanel;
+let infoPanel;
+let buttonsPanel;
+
 function init(bundle, parent, options = {}) {
   AudioPanel = new Surface(100, 100, Surface.SurfaceShape.Flat );
   const cameraDirection = [0, 0, -1];
@@ -212,7 +219,7 @@ class CustomLinkingModule extends Module {
   // clears the video player component
   clearVideoPlayer(handler){
     let players = r360.compositor._videoPlayers._players;
-    for(player in players){
+    for(let player in players){
       if(player !== 'default'){
         // console.log(player, " destroyed!")
         r360.compositor._videoPlayers.destroyPlayer(player)

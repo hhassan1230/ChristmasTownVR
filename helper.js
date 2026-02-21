@@ -19,19 +19,19 @@ export const setBackground = (roomName) => {
         let source = house.rooms[roomName].background.source.includes('//') ? house.rooms[roomName].background.source : asset(house.rooms[roomName].background.source).uri;
         //gives random names to video player
         let videoName = `video-${randomString()}`
-        videoBackground = VideoModule.createPlayer(videoName); // Bike.mp4
+        let videoBackground = VideoModule.createPlayer(videoName); // Bike.mp4
 
-        this.videoBackground.play({
+        videoBackground.play({
             source: { url: source},
             muted: true
         });
     
         // set loop to true to allow video;
         if(house.rooms[roomName].background.loop){
-            this.videoBackground.addListener('onVideoStatusChanged', (e) => {
+            videoBackground.addListener('onVideoStatusChanged', (e) => {
             if (e.status === 'finished') {
                 // console.log('Event', e);
-                this.videoBackground.resume()
+                videoBackground.resume()
             }
             });
         }
